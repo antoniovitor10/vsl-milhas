@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx skills:*)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --app --src-dir=false --import-alias=\"@/*\" --no-git --yes)",
+      "Bash(npx create-next-app@latest temp-project --typescript --tailwind --app --src-dir=false --import-alias=\"@/*\" --no-git --yes)",
+      "Bash(mv temp-project/* .)",
+      "Bash(mv temp-project/.* .)",
+      "Bash(rmdir temp-project:*)",
+      "Bash(cp -r temp-project/. .)",
+      "Bash(rm -rf temp-project)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "WebFetch(domain:formatocriativodeconteudo.com.br)"
+    ]
+  }
+}

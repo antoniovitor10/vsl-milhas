@@ -1,0 +1,273 @@
+/* ============================================================
+   V2 — Editorial / Typographic Style — VIBRANT REVISION
+   ============================================================ */
+
+:root {
+  --v2-bg: #F5EFE0;          /* parchment quente, não branco */
+  --v2-bg-alt: #EDE4CE;      /* areia mais escura */
+  --v2-bg-dark: #1A1410;     /* preto quente */
+  --v2-bg-yellow: #FFEE58;   /* seção amarela */
+  --v2-ink: #111111;
+  --v2-ink-muted: #4A4235;
+  --v2-ink-light: #8A7D65;
+  --v2-yellow: #FFEE58;
+  --v2-yellow-dark: #E8D400;
+  --v2-orange: #F97316;      /* acento laranja vibrante */
+  --v2-green: #25D366;
+  --v2-red: #DC2626;
+  --v2-border: #C8BB9A;
+  --v2-border-dark: #2C2420;
+  --v2-shadow: 5px 5px 0px rgba(0, 0, 0, 0.18);
+  --v2-shadow-hover: 8px 8px 0px rgba(0, 0, 0, 0.22);
+  --v2-shadow-yellow: 6px 6px 0px #E8D400;
+  --v2-shadow-deep: 10px 10px 0px rgba(0, 0, 0, 0.15);
+}
+
+/* ---- Tipografia editorial — tamanhos revisados ---- */
+.v2-h-display {
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.v2-h-section {
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.v2-label {
+  font-family: var(--font-manrope), sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--v2-ink-light);
+}
+
+.v2-body {
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 400;
+  line-height: 1.65;
+  font-size: 1rem;
+  color: var(--v2-ink-muted);
+}
+
+/* ---- Highlight amarelo ---- */
+.v2-mark {
+  background: var(--v2-yellow);
+  color: var(--v2-ink);
+  padding: 0.02em 0.1em;
+  display: inline;
+}
+
+/* ---- Botões ---- */
+.v2-btn-black {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--v2-ink);
+  color: #FFFFFF;
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.95rem 2rem;
+  border: none;
+  border-radius: 0;
+  box-shadow: var(--v2-shadow);
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.15s;
+  text-decoration: none;
+}
+.v2-btn-black:hover {
+  box-shadow: var(--v2-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+.v2-btn-green {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--v2-green);
+  color: #111111;
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 1.1rem 2.5rem;
+  border: none;
+  border-radius: 0;
+  box-shadow: var(--v2-shadow);
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.15s;
+  text-decoration: none;
+}
+.v2-btn-green:hover {
+  box-shadow: var(--v2-shadow-hover);
+  transform: translate(-1px, -1px);
+}
+
+/* ---- Cards ---- */
+.v2-card {
+  background: #FFFFFF;
+  border: 1.5px solid var(--v2-border);
+  box-shadow: var(--v2-shadow);
+  border-radius: 0;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.v2-card:hover {
+  box-shadow: var(--v2-shadow-hover);
+  transform: translate(-2px, -2px);
+}
+
+/* ---- Separadores ---- */
+.v2-divider {
+  width: 100%;
+  height: 1.5px;
+  background: var(--v2-border);
+}
+
+/* ---- Badge/tag ---- */
+.v2-badge {
+  display: inline-block;
+  background: var(--v2-red);
+  color: #FFFFFF;
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 700;
+  font-size: 0.67rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: 0;
+}
+
+.v2-badge-yellow {
+  display: inline-block;
+  background: var(--v2-yellow);
+  color: #111111;
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 700;
+  font-size: 0.67rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: 0;
+}
+
+.v2-badge-outline {
+  display: inline-block;
+  background: transparent;
+  color: var(--v2-ink);
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 700;
+  font-size: 0.67rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border: 1.5px solid var(--v2-ink);
+  border-radius: 0;
+}
+
+/* ---- Linha decorativa ---- */
+.v2-accent-line {
+  width: 40px;
+  height: 4px;
+  background: var(--v2-yellow);
+}
+
+/* ---- Avatar offset ---- */
+.v2-avatar {
+  background: var(--v2-yellow);
+  color: var(--v2-ink);
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 800;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---- Stat number ---- */
+.v2-stat-number {
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+/* ---- WhatsApp float ---- */
+.v2-wa-float {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  background: var(--v2-green);
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.22);
+  border-radius: 0;
+  animation: v2-wa-anim 8s ease-in-out infinite;
+}
+@keyframes v2-wa-anim {
+  0%, 80%, 100% { transform: translate(0, 0); }
+  88% { transform: translate(-3px, -5px); }
+  94% { transform: translate(0, -3px); }
+}
+
+/* ---- FAQ ---- */
+.v2-faq-item {
+  border-bottom: 1.5px solid var(--v2-border);
+}
+
+/* ---- Scroll animations ---- */
+.v2-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.v2-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.v2-reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.v2-reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ---- Video player border vibrant ---- */
+.v2-video-frame {
+  border: 2px solid var(--v2-border-dark);
+  box-shadow: 10px 10px 0px var(--v2-yellow-dark);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: #0d0b08;
+}
+
+/* ---- Urgency strip ---- */
+.v2-urgency-strip {
+  background: var(--v2-red);
+  color: white;
+  font-family: var(--font-manrope), sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.55rem 1rem;
+  text-align: center;
+}
