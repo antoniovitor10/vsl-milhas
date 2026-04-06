@@ -2,7 +2,7 @@ name: Build & Deploy VSL
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
 jobs:
   deploy:
@@ -26,21 +26,10 @@ jobs:
       - name: Deploy via rsync
         uses: burnett01/rsync-deployments@7.0.1
         with:
-          switches: -avzr --delete --exclude='.htaccess'
+          switches: -avz --delete --exclude='.htaccess'
           path: out/
           remote_path: ${{ secrets.DEPLOY_PATH }}/
           remote_host: ${{ secrets.NAPOLEAO_HOST }}
           remote_port: ${{ secrets.NAPOLEAO_PORT }}
           remote_user: ${{ secrets.NAPOLEAO_USER }}
           remote_key: ${{ secrets.NAPOLEAO_SSH_KEY }}
-
-      - name: Fix permissions (LiteSpeed)
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.NAPOLEAO_HOST }}
-          username: ${{ secrets.NAPOLEAO_USER }}
-          key: ${{ secrets.NAPOLEAO_SSH_KEY }}
-          port: ${{ secrets.NAPOLEAO_PORT }}
-          script: |
-            find ${{ secrets.DEPLOY_PATH }} -type d -exec chmod 711 {} \;
-            find ${{ secrets.DEPLOY_PATH }} -type f -exec chmod 644 {} \;
