@@ -46,7 +46,7 @@ export default function VSLPlayer({
 
     if (videoRef.current) {
       videoRef.current.muted = false;
-      videoRef.current.play().catch(() => {});
+      videoRef.current.play().catch(() => { });
     }
   };
 
@@ -99,7 +99,7 @@ export default function VSLPlayer({
   const keepPlaying = () => {
     const video = videoRef.current;
     if (!video || controlsUnlocked || video.ended) return;
-    video.play().catch(() => {});
+    video.play().catch(() => { });
   };
 
   return (
