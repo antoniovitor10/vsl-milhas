@@ -58,8 +58,18 @@ export default function VSLPlayer({
     }
 
     const rawProgress = Math.min(video.currentTime / video.duration, 1);
-    const easedProgress = Math.sqrt(rawProgress);
-    setProgress(easedProgress * 100);
+
+    const BURST_SECONDS = 2;
+    const BURST_CAP = 60;
+    let percent: number;
+    if (video.currentTime < BURST_SECONDS) {
+      percent = (video.currentTime / BURST_SECONDS) * BURST_CAP;
+    } else {
+      const remainingDuration = Math.max(video.duration - BURST_SECONDS, 0.001);
+      const remainingProgress = Math.min((video.currentTime - BURST_SECONDS) / remainingDuration, 1);
+      percent = BURST_CAP + remainingProgress * (100 - BURST_CAP);
+    }
+    setProgress(percent);
 
     const watchedPercent = rawProgress * 100;
     [25, 50, 75].forEach((milestone) => {
