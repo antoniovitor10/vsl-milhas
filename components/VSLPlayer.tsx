@@ -5,14 +5,15 @@ import { VolumeX } from "lucide-react";
 import { HERO_VIDEO_AUTO_UNLOCK_SECONDS, HERO_VIDEO_URL } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 
-// Velocidade relativa [5,4,3,2,1] em 5 trechos de 20% da barra.
+// Velocidade relativa [20,15,10,5,1] em 5 trechos de 20% da barra.
 // Limites de tempo do vídeo normalizados para a barra bater 100% exatamente no fim.
+// Pesos: 1/20, 1/15, 1/10, 1/5, 1 = 3, 4, 6, 12, 60 (em 60avos) → soma 85.
 const BAR_SEGMENTS = [
-  { vStart: 0,       vEnd: 12 / 137, bStart: 0,   bEnd: 0.2 },
-  { vStart: 12 / 137, vEnd: 27 / 137, bStart: 0.2, bEnd: 0.4 },
-  { vStart: 27 / 137, vEnd: 47 / 137, bStart: 0.4, bEnd: 0.6 },
-  { vStart: 47 / 137, vEnd: 77 / 137, bStart: 0.6, bEnd: 0.8 },
-  { vStart: 77 / 137, vEnd: 1,        bStart: 0.8, bEnd: 1 },
+  { vStart: 0,       vEnd: 3 / 85,  bStart: 0,   bEnd: 0.2 },
+  { vStart: 3 / 85,  vEnd: 7 / 85,  bStart: 0.2, bEnd: 0.4 },
+  { vStart: 7 / 85,  vEnd: 13 / 85, bStart: 0.4, bEnd: 0.6 },
+  { vStart: 13 / 85, vEnd: 25 / 85, bStart: 0.6, bEnd: 0.8 },
+  { vStart: 25 / 85, vEnd: 1,       bStart: 0.8, bEnd: 1 },
 ];
 
 interface VSLPlayerProps {
