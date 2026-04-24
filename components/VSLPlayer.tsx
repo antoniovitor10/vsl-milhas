@@ -5,6 +5,16 @@ import { VolumeX } from "lucide-react";
 import { HERO_VIDEO_AUTO_UNLOCK_SECONDS, HERO_VIDEO_URL } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 
+// Velocidade relativa [5,4,3,2,1] em 5 trechos de 20% da barra.
+// Limites de tempo do vídeo normalizados para a barra bater 100% exatamente no fim.
+const BAR_SEGMENTS = [
+  { vStart: 0,       vEnd: 12 / 137, bStart: 0,   bEnd: 0.2 },
+  { vStart: 12 / 137, vEnd: 27 / 137, bStart: 0.2, bEnd: 0.4 },
+  { vStart: 27 / 137, vEnd: 47 / 137, bStart: 0.4, bEnd: 0.6 },
+  { vStart: 47 / 137, vEnd: 77 / 137, bStart: 0.6, bEnd: 0.8 },
+  { vStart: 77 / 137, vEnd: 1,        bStart: 0.8, bEnd: 1 },
+];
+
 interface VSLPlayerProps {
   onUnlock: () => void;
   autoUnlockDelaySeconds?: number;
@@ -59,16 +69,12 @@ export default function VSLPlayer({
 
     const rawProgress = Math.min(video.currentTime / video.duration, 1);
 
-    const BURST_SECONDS = 2;
-    const BURST_CAP = 60;
-    let percent: number;
-    if (video.currentTime < BURST_SECONDS) {
-      percent = (video.currentTime / BURST_SECONDS) * BURST_CAP;
-    } else {
-      const remainingDuration = Math.max(video.duration - BURST_SECONDS, 0.001);
-      const remainingProgress = Math.min((video.currentTime - BURST_SECONDS) / remainingDuration, 1);
-      percent = BURST_CAP + remainingProgress * (100 - BURST_CAP);
-    }
+    const seg =
+      BAR_SEGMENTS.find((s) => rawProgress <= s.vEnd) ??
+      BAR_SEGMENTS[BAR_SEGMENTS.length - 1];
+    const segWidth = Math.max(seg.vEnd - seg.vStart, 0.0001);
+    const segProgress = (rawProgress - seg.vStart) / segWidth;
+    const percent = (seg.bStart + segProgress * (seg.bEnd - seg.bStart)) * 100;
     setProgress(percent);
 
     const watchedPercent = rawProgress * 100;
