@@ -52,8 +52,10 @@ export const MENTORS = {
   },
 };
 
-// Vídeo hero self-hosted em /public para carregamento direto.
-export const HERO_VIDEO_URL = "/hero-vsl.mp4";
+// Vídeos hospedados na R2 (Cloudflare)
+const R2_BASE = "https://pub-e56ffdd6bdf7488fa40810b0c7b6601a.r2.dev";
+
+export const HERO_VIDEO_URL = `${R2_BASE}/Vsl%201.mp4`;
 export const HERO_VIDEO_AUTO_UNLOCK_SECONDS = 30;
 export const OFFER_UNLOCK_SECONDS = 30;
 
@@ -146,37 +148,67 @@ export const SOCIAL_PROOF = {
   testimonials: [
     {
       type: "video" as const,
-      videoUrl: "/testimonials/videos/video-fabi-feedback.mp4",
+      videoUrl: `${R2_BASE}/Video%20Fabi%20Feedback.mp4`,
       name: "Fabi",
       localidade: "",
     },
     {
       type: "video" as const,
-      videoUrl: "/testimonials/videos/video-fabiane-orlando.mp4",
+      videoUrl: `${R2_BASE}/Video%20Fabiane%20Em%20Orlando.mp4`,
       name: "Fabiane",
       localidade: "Orlando, EUA",
     },
     {
       type: "video" as const,
-      videoUrl: "/testimonials/videos/video-thiza-feedback.mp4",
+      videoUrl: `${R2_BASE}/Video%20Thiza%20Feedback.mp4`,
       name: "Thiza",
       localidade: "",
     },
     {
       type: "video" as const,
-      videoUrl: "/testimonials/videos/video-1.mp4",
+      videoUrl: `${R2_BASE}/Whatsapp%20Video%202026-03-18%20At%2011.13.39.mp4`,
       name: "Mentorado",
       localidade: "",
     },
     {
       type: "video" as const,
-      videoUrl: "/testimonials/videos/video-2.mp4",
+      videoUrl: `${R2_BASE}/Whatsapp%20Video%202026-03-20%20At%2016.30.11.mp4`,
       name: "Mentorado",
       localidade: "",
     },
     {
       type: "video" as const,
-      videoUrl: "/testimonials/videos/video-3.mp4",
+      videoUrl: `${R2_BASE}/Vid-20251115-Wa0005.mp4`,
+      name: "Mentorado",
+      localidade: "",
+    },
+    {
+      type: "video" as const,
+      videoUrl: `${R2_BASE}/Video%20Fabiane%20Em%20Orlando.mp4`,
+      name: "Fabiane",
+      localidade: "Orlando, EUA",
+    },
+    {
+      type: "video" as const,
+      videoUrl: `${R2_BASE}/Video%20Thiza%20Feedback.mp4`,
+      name: "Thiza",
+      localidade: "",
+    },
+    {
+      type: "video" as const,
+      videoUrl: `${R2_BASE}/Whatsapp%20Video%202026-03-18%20At%2011.13.39.mp4`,
+      name: "Mentorado",
+      localidade: "",
+    },
+    {
+      type: "video" as const,
+      videoUrl: `${R2_BASE}/Whatsapp%20Video%202026-03-20%20At%2016.30.11.mp4`,
+      name: "Mentorado",
+      localidade: "",
+    },
+    {
+      type: "video" as const,
+      videoUrl: `${R2_BASE}/Vid-20251115-Wa0005.mp4`,
       name: "Mentorado",
       localidade: "",
     },

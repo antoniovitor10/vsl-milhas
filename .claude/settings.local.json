@@ -11,7 +11,18 @@
       "Bash(rm -rf temp-project)",
       "Bash(npm install:*)",
       "Bash(npm run:*)",
-      "WebFetch(domain:formatocriativodeconteudo.com.br)"
+      "WebFetch(domain:formatocriativodeconteudo.com.br)",
+      "Bash(git ls-tree *)",
+      "Bash(git rev-list *)",
+      "Bash(git cat-file *)",
+      "Bash(awk '/^blob/ {if \\($3 > 50000000\\) print $3, $4}')",
+      "Bash(git fetch *)",
+      "Bash(git reset *)",
+      "Bash(xargs -0 git rm --cached --)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(awk '/^blob/ && $3 > 50000000 {print $3, $4}')",
+      "Bash(git push *)"
     ]
   }
 }
