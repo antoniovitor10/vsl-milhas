@@ -17,40 +17,27 @@ export default function VSLPlayer({
   const [progress, setProgress] = useState(0);
   const [isOverlayVisible, setIsOverlayVisible] = useState(true);
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const [controlsUnlocked, setControlsUnlocked] = useState(false);
+  const [isVideoEnded, setIsVideoEnded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const startTimeRef = useRef<number>(Date.now());
   const milestonesTrackedRef = useRef<Set<number>>(new Set());
   const autoUnlockTrackedRef = useRef(false);
   const metadataTrackedRef = useRef(false);
 
   useEffect(() => {
-    if (isUnlocked) {
-      return;
-    }
+    if (isUnlocked) return;
 
-    const durationMs = autoUnlockDelaySeconds * 1000;
-
-    const updateProgress = () => {
-      const elapsed = Date.now() - startTimeRef.current;
-      const nextProgress = Math.min((elapsed / durationMs) * 100, 100);
-
-      setProgress(nextProgress);
-
-      if (elapsed >= durationMs && !isUnlocked) {
-        setProgress(100);
-        setIsUnlocked(true);
-        if (!autoUnlockTrackedRef.current) {
-          autoUnlockTrackedRef.current = true;
-          trackEvent("vsl_auto_unlock", { delay_seconds: autoUnlockDelaySeconds });
-        }
-        onUnlock();
+    const timeoutId = window.setTimeout(() => {
+      setIsUnlocked(true);
+      setControlsUnlocked(true);
+      if (!autoUnlockTrackedRef.current) {
+        autoUnlockTrackedRef.current = true;
+        trackEvent("vsl_auto_unlock", { delay_seconds: autoUnlockDelaySeconds });
       }
-    };
+      onUnlock();
+    }, autoUnlockDelaySeconds * 1000);
 
-    updateProgress();
-    const intervalId = window.setInterval(updateProgress, 100);
-
-    return () => window.clearInterval(intervalId);
+    return () => window.clearTimeout(timeoutId);
   }, [autoUnlockDelaySeconds, isUnlocked, onUnlock]);
 
   const handlePlayClick = () => {
@@ -70,8 +57,11 @@ export default function VSLPlayer({
       return;
     }
 
-    const watchedPercent = (video.currentTime / video.duration) * 100;
+    const rawProgress = Math.min(video.currentTime / video.duration, 1);
+    const easedProgress = Math.sqrt(rawProgress);
+    setProgress(easedProgress * 100);
 
+    const watchedPercent = rawProgress * 100;
     [25, 50, 75].forEach((milestone) => {
       if (watchedPercent >= milestone && !milestonesTrackedRef.current.has(milestone)) {
         milestonesTrackedRef.current.add(milestone);
@@ -91,10 +81,15 @@ export default function VSLPlayer({
     trackEvent("vsl_loaded", { duration_seconds: Math.round(video.duration || 0) });
   };
 
+  const handleVideoEnded = () => {
+    setIsVideoEnded(true);
+    setProgress(100);
+  };
+
   const keepPlaying = () => {
-    if (videoRef.current) {
-      videoRef.current.play().catch(() => {});
-    }
+    const video = videoRef.current;
+    if (!video || controlsUnlocked || video.ended) return;
+    video.play().catch(() => {});
   };
 
   return (
@@ -104,16 +99,18 @@ export default function VSLPlayer({
           {HERO_VIDEO_URL ? (
             <video
               ref={videoRef}
-              className="w-full h-full object-cover md:object-contain pointer-events-none"
+              className={`w-full h-full object-cover md:object-contain ${controlsUnlocked ? "" : "pointer-events-none"}`}
               src={HERO_VIDEO_URL}
               autoPlay
               muted
               playsInline
-              loop={!isUnlocked}
               preload="metadata"
+              controls={controlsUnlocked}
+              controlsList="nodownload"
               onPause={keepPlaying}
               onTimeUpdate={handleTimeUpdate}
               onLoadedMetadata={handleLoadedMetadata}
+              onEnded={handleVideoEnded}
               onContextMenu={(e) => e.preventDefault()}
             />
           ) : (
@@ -137,13 +134,13 @@ export default function VSLPlayer({
           </div>
         )}
 
-        {!isUnlocked && (
+        {!isVideoEnded && (
           <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-black/80 z-20 backdrop-blur-sm shadow-[0_-2px_10px_rgba(0,0,0,0.5)] pointer-events-none">
             <div
               className="h-full bg-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.8)]"
               style={{
                 width: `${progress}%`,
-                transition: "width 100ms linear",
+                transition: "width 300ms linear",
               }}
             />
           </div>
