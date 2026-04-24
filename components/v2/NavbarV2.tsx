@@ -75,16 +75,14 @@ export default function NavbarV2() {
             {/* Logo */}
             <a
               href="#hero"
-              style={{
-                fontFamily: "var(--font-manrope), sans-serif",
-                fontWeight: 800,
-                fontSize: "1rem",
-                letterSpacing: "-0.02em",
-                color: "#111111",
-                textDecoration: "none",
-              }}
+              style={{ display: "flex", alignItems: "center" }}
             >
-              {PRODUCT.name}
+              <img
+                src="/logo.svg"
+                alt={PRODUCT.name}
+                style={{ height: 80, width: "auto" }}
+                className="mix-blend-screen"
+              />
             </a>
 
             {/* Desktop nav */}

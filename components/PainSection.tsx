@@ -51,9 +51,9 @@ export default function PainSection() {
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center"
                 style={{
-                  background: "rgba(245,158,11,0.12)",
+                  background: "rgba(37,99,235,0.12)",
                   color: "var(--accent)",
-                  border: "1px solid rgba(245,158,11,0.2)",
+                  border: "1px solid rgba(37,99,235,0.2)",
                 }}
               >
                 {iconMap[card.icon]}

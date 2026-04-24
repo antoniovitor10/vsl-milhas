@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { Star } from "lucide-react";
 import { SOCIAL_PROOF } from "@/lib/constants";
 import AnimatedCounter from "@/components/AnimatedCounter";
 
@@ -107,37 +106,28 @@ export default function SocialProofV2() {
                 background: "#FFFFFF",
                 border: "1.5px solid #111111",
                 boxShadow: "5px 5px 0px #111111",
-                padding: "1.75rem",
                 display: "flex",
                 flexDirection: "column",
-                gap: "0.85rem",
+                overflow: "hidden",
               }}
             >
-              <div style={{ display: "flex", gap: "3px" }}>
-                {[...Array(t.stars)].map((_, s) => (
-                  <Star key={s} size={13} fill="#111111" color="#111111" />
-                ))}
+              <div style={{ aspectRatio: "9/16", maxHeight: 420, background: "#000" }}>
+                <video
+                  controls
+                  playsInline
+                  preload="metadata"
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                >
+                  <source src={t.videoUrl} type="video/mp4" />
+                </video>
               </div>
-              <p
-                style={{
-                  fontFamily: "var(--font-manrope), sans-serif",
-                  fontWeight: 400,
-                  fontSize: "0.88rem",
-                  lineHeight: 1.65,
-                  color: "#333333",
-                  fontStyle: "italic",
-                  flex: 1,
-                }}
-              >
-                "{t.text}"
-              </p>
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
                   gap: "0.65rem",
+                  padding: "1rem 1.25rem",
                   borderTop: "1px solid #E8E8E8",
-                  paddingTop: "0.85rem",
                 }}
               >
                 <div
@@ -152,22 +142,37 @@ export default function SocialProofV2() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    flexShrink: 0,
                   }}
                 >
                   {t.name.slice(0, 2)}
                 </div>
-                <span
-                  style={{
-                    fontFamily: "var(--font-manrope), sans-serif",
-                    fontWeight: 700,
-                    fontSize: "0.72rem",
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    color: "#111111",
-                  }}
-                >
-                  {t.name}
-                </span>
+                <div>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-manrope), sans-serif",
+                      fontWeight: 700,
+                      fontSize: "0.72rem",
+                      letterSpacing: "0.08em",
+                      textTransform: "uppercase",
+                      color: "#111111",
+                    }}
+                  >
+                    {t.name}
+                  </span>
+                  {t.localidade && (
+                    <p
+                      style={{
+                        fontFamily: "var(--font-manrope), sans-serif",
+                        fontSize: "0.65rem",
+                        color: "#666",
+                        marginTop: 2,
+                      }}
+                    >
+                      {t.localidade}
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           ))}

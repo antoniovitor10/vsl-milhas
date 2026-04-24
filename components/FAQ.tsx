@@ -38,7 +38,7 @@ export default function FAQ() {
                 style={{
                   background: "var(--bg-card)",
                   border: openIndex === i
-                    ? "1px solid rgba(245,158,11,0.35)"
+                    ? "1px solid rgba(37,99,235,0.35)"
                     : "1px solid var(--border)",
                   transition: "border-color 0.2s",
                 }}

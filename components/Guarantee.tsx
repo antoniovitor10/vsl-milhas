@@ -28,8 +28,8 @@ export default function Guarantee() {
             variants={fadeUp}
             className="w-20 h-20 rounded-full flex items-center justify-center"
             style={{
-              background: "rgba(245,158,11,0.1)",
-              border: "2px solid rgba(245,158,11,0.3)",
+              background: "rgba(37,99,235,0.1)",
+              border: "2px solid rgba(37,99,235,0.3)",
             }}
           >
             <ShieldCheck size={38} style={{ color: "var(--accent)" }} />
@@ -64,7 +64,7 @@ export default function Guarantee() {
                 key={mentor.name}
                 className="flex items-center gap-4 p-5 rounded-2xl"
                 style={{
-                  background: "rgba(245,158,11,0.04)",
+                  background: "rgba(37,99,235,0.04)",
                   border: "1px solid var(--border)",
                 }}
               >
@@ -72,9 +72,9 @@ export default function Guarantee() {
                 <div
                   className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 text-lg font-bold"
                   style={{
-                    background: "rgba(245,158,11,0.12)",
+                    background: "rgba(37,99,235,0.12)",
                     color: "var(--accent)",
-                    border: "2px solid rgba(245,158,11,0.2)",
+                    border: "2px solid rgba(37,99,235,0.2)",
                     fontFamily: "var(--font-sora), sans-serif",
                   }}
                 >

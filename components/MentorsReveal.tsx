@@ -16,7 +16,7 @@ export default function MentorsReveal() {
         className="absolute top-0 right-0 w-1/2 h-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 80% at 80% 40%, rgba(245,158,11,0.05), transparent)",
+            "radial-gradient(ellipse 60% 80% at 80% 40%, rgba(37,99,235,0.05), transparent)",
         }}
       />
 
@@ -51,42 +51,44 @@ export default function MentorsReveal() {
             </p>
 
             {/* Stats */}
-            <motion.div
-              className="grid grid-cols-2 gap-4"
-              variants={stagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewportOnce}
-            >
-              {MENTORS_REVEAL.stats.map((stat) => (
-                <motion.div
-                  key={stat.label}
-                  variants={fadeUp}
-                  className="rounded-2xl p-6"
-                  style={{
-                    background: "var(--bg-card)",
-                    border: "1px solid var(--border)",
-                  }}
-                >
-                  <div
-                    className="text-4xl sm:text-5xl font-extrabold leading-none mb-2"
+            {MENTORS_REVEAL.stats && MENTORS_REVEAL.stats.length > 0 ? (
+              <motion.div
+                className="grid grid-cols-2 gap-4"
+                variants={stagger}
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+              >
+                {MENTORS_REVEAL.stats.map((stat, idx) => (
+                  <motion.div
+                    key={idx}
+                    variants={fadeUp}
+                    className="rounded-2xl p-6"
                     style={{
-                      fontFamily: "var(--font-sora), sans-serif",
-                      color: "var(--accent)",
+                      background: "var(--bg-card)",
+                      border: "1px solid var(--border)",
                     }}
                   >
-                    <AnimatedCounter
-                      value={stat.number}
-                      prefix={stat.prefix}
-                      suffix={stat.suffix}
-                    />
-                  </div>
-                  <p className="text-xs sm:text-sm" style={{ color: "var(--text-secondary)" }}>
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
-            </motion.div>
+                    <div
+                      className="text-4xl sm:text-5xl font-extrabold leading-none mb-2"
+                      style={{
+                        fontFamily: "var(--font-sora), sans-serif",
+                        color: "var(--accent)",
+                      }}
+                    >
+                      <AnimatedCounter
+                        value={stat.number}
+                        prefix={stat.prefix}
+                        suffix={stat.suffix}
+                      />
+                    </div>
+                    <p className="text-xs sm:text-sm" style={{ color: "var(--text-secondary)" }}>
+                      {stat.label}
+                    </p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            ) : null}
           </motion.div>
 
           {/* Right — mentors photos */}
@@ -108,26 +110,12 @@ export default function MentorsReveal() {
                     border: "1px solid var(--border)",
                   }}
                 >
-                  {/* Placeholder avatar */}
-                  <div
-                    className="absolute inset-0 flex items-center justify-center"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #1a1200 0%, #0d0a04 100%)",
-                    }}
-                  >
-                    <span
-                      className="text-5xl font-extrabold"
-                      style={{
-                        fontFamily: "var(--font-sora), sans-serif",
-                        color: "rgba(245,158,11,0.3)",
-                      }}
-                    >
-                      {mentor.initials}
-                    </span>
-                  </div>
-                  {/* Real photo — uncomment when available */}
-                  {/* <img src={mentor.photo} alt={mentor.name} className="w-full h-full object-cover" loading="lazy" /> */}
+                  <img
+                    src={mentor.photo}
+                    alt={mentor.name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
                 <div className="text-center">
                   <p

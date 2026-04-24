@@ -1,15 +1,19 @@
 "use client";
+import { useRef } from "react";
 import { motion } from "framer-motion";
 import { FINAL_CTA, WHATSAPP } from "@/lib/constants";
 import { fadeUp, stagger, viewportOnce } from "@/lib/animations";
+import { trackEvent } from "@/lib/analytics";
 
 export default function FinalCTA() {
+  const finalCtaViewTrackedRef = useRef(false);
+
   return (
     <section
       id="cta-final"
       className="relative py-24 px-4 overflow-hidden"
       style={{
-        background: "linear-gradient(135deg, #7f1d1d 0%, #dc2626 40%, #b91c1c 100%)",
+        background: "linear-gradient(135deg, #1e3a5f 0%, #2563EB 40%, #1D4ED8 100%)",
       }}
     >
       {/* Texture overlay */}
@@ -17,7 +21,7 @@ export default function FinalCTA() {
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.04) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(245,158,11,0.15) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.06) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(96,165,250,0.15) 0%, transparent 50%)",
         }}
       />
 
@@ -38,6 +42,12 @@ export default function FinalCTA() {
           viewport={viewportOnce}
           variants={stagger}
           className="flex flex-col items-center gap-8"
+          onViewportEnter={() => {
+            if (!finalCtaViewTrackedRef.current) {
+              finalCtaViewTrackedRef.current = true;
+              trackEvent("final_cta_view");
+            }
+          }}
         >
           {/* Badge */}
           <motion.div variants={fadeUp}>
@@ -81,10 +91,11 @@ export default function FinalCTA() {
               className="inline-flex items-center gap-3 px-10 py-6 rounded-full text-base sm:text-xl font-extrabold uppercase tracking-wide transition-all duration-200 hover:scale-105 hover:shadow-2xl"
               style={{
                 background: "white",
-                color: "#b91c1c",
+                color: "#1D4ED8",
                 fontFamily: "var(--font-sora), sans-serif",
                 boxShadow: "0 0 40px rgba(255,255,255,0.3)",
               }}
+              onClick={() => trackEvent("final_cta_click")}
             >
               {FINAL_CTA.cta} →
             </a>

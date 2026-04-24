@@ -1,14 +1,6 @@
 "use client";
 import { FOOTER, PRODUCT } from "@/lib/constants";
 
-const sectionAnchors: Record<string, string> = {
-  PAGAMENTO: "#oferta",
-  INÍCIO: "#hero",
-  GARANTIA: "#garantia",
-  CONTATO: "#faq",
-  FAQ: "#faq",
-};
-
 export default function Footer() {
   return (
     <footer
@@ -20,29 +12,13 @@ export default function Footer() {
     >
       <div className="max-w-6xl mx-auto flex flex-col items-center gap-8">
         {/* Logo */}
-        <span
-          className="text-xl font-bold"
-          style={{
-            fontFamily: "var(--font-sora), sans-serif",
-            color: "var(--accent)",
-          }}
-        >
-          {PRODUCT.name}
-        </span>
-
-        {/* Links */}
-        <nav className="flex flex-wrap justify-center gap-6">
-          {FOOTER.links.map((link) => (
-            <a
-              key={link}
-              href={sectionAnchors[link] || "#"}
-              className="text-xs font-bold tracking-widest transition-colors hover:text-amber-400"
-              style={{ color: "var(--text-muted)" }}
-            >
-              {link}
-            </a>
-          ))}
-        </nav>
+        <a href="#hero" className="inline-block">
+          <img
+            src="/logo.svg"
+            alt={PRODUCT.name}
+            className="h-16 md:h-20 w-auto mix-blend-screen"
+          />
+        </a>
 
         {/* Divider */}
         <div className="w-full h-px" style={{ background: "var(--border)" }} />

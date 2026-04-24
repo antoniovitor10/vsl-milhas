@@ -70,9 +70,9 @@ export default function ModulesGrid() {
                 <div
                   className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{
-                    background: "rgba(245,158,11,0.1)",
+                    background: "rgba(37,99,235,0.1)",
                     color: "var(--accent)",
-                    border: "1px solid rgba(245,158,11,0.2)",
+                    border: "1px solid rgba(37,99,235,0.2)",
                   }}
                 >
                   {iconMap[mod.icon]}

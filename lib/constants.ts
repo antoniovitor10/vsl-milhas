@@ -22,10 +22,12 @@ export const PRICING = {
 };
 
 export const WHATSAPP = {
-  numero: "55XXXXXXXXXXX",
+  numero: "+5575999999999",
   mensagem: `Olá! Vim pela página do ${PRODUCT.name} e quero garantir minha vaga!`,
   get link() {
-    return `https://wa.me/${this.numero}?text=${encodeURIComponent(this.mensagem)}`;
+    return this.numero
+      ? `https://wa.me/${this.numero}?text=${encodeURIComponent(this.mensagem)}`
+      : "#oferta";
   },
 };
 
@@ -36,7 +38,7 @@ export const MENTORS = {
     roleShort: "Especialista em milhas aéreas",
     instagram: "paullopietroski.milhas",
     instagramUrl: "https://instagram.com/paullopietroski.milhas",
-    photo: "/mentors/paullo.webp",
+    photo: "/mentors/paullo.jpg",
     initials: "PP",
   },
   isabela: {
@@ -45,20 +47,24 @@ export const MENTORS = {
     roleShort: "Gestora de milhas e viagens",
     instagram: "isadasmilhas",
     instagramUrl: "https://instagram.com/isadasmilhas",
-    photo: "/mentors/isabela.webp",
+    photo: "/mentors/isabela.jpg",
     initials: "IC",
   },
 };
 
+// Vídeo hero self-hosted em /public para carregamento direto.
+export const HERO_VIDEO_URL = "/hero-vsl.mp4";
+export const HERO_VIDEO_AUTO_UNLOCK_SECONDS = 30;
+export const OFFER_UNLOCK_SECONDS = 30;
+
 export const HERO = {
-  badge: "🔥 AS VAGAS ESTÃO ACABANDO. TURMA 01 COM DESCONTO ESPECIAL.",
-  headline: "DESCUBRA COMO VIAJAR O MUNDO GASTANDO",
-  headlineAccent: "ATÉ 90% MENOS",
-  headlineSuffix: "USANDO MILHAS AÉREAS",
-  subheadline: `O método ${PRODUCT.name} é o seu passaporte para a primeira classe. Aprenda a transformar gastos cotidianos em experiências extraordinárias.`,
-  cta: "QUERO APRENDER AGORA",
-  logos: ["SMILES", "LATAM PASS", "AZUL", "TAP", "AMEX"],
-  videoUrl: "", // PLACEHOLDER — trocar pelo embed real
+  badge: "",
+  headline: "Descubra como viajar mais gastando o mesmo ou menos. Aprenda agora a transformar os",
+  headlineAccent: "gastos que você já tem hoje",
+  headlineSuffix: "em viagens.",
+  subheadline: "O Milha na Prática apresenta o Método SIM é o seu passaporte para as viagens do sonho.",
+  cta: "QUERO GARANTIR MINHA VAGA",
+  logos: [],
 };
 
 export const PAIN = {
@@ -72,7 +78,7 @@ export const PAIN = {
     {
       icon: "CreditCard",
       title: "Dinheiro escorrendo pelo ralo?",
-      text: "Paga anuidade, acumula pontos e no final troca por uma torradeira. Seus pontos valem MUITO mais.",
+      text: "Você pesquisa em vários sites, entra na 123, Decolar, Google Voos e no final compra passagem caro do mesmo jeito.",
     },
     {
       icon: "MapPin",
@@ -85,18 +91,10 @@ export const PAIN = {
 };
 
 export const MENTORS_REVEAL = {
-  title: "A MENTORIA QUE VAI",
-  titleAccent: "REDEFINIR SUA LIBERDADE",
-  text: `Paullo Pietroski e Isabela Crozetta uniram anos de experiência no mercado de milhas e criaram o método que já ajudou centenas de mentorados a viajar o mundo gastando uma fração do valor.\n\nNão é sobre acumular milhas. É sobre construir um estilo de vida diferente.`,
-  stats: [
-    { number: 5000, prefix: "+", suffix: "", label: "mentorados impactados" },
-    {
-      number: 90,
-      prefix: "",
-      suffix: "%",
-      label: "de economia média em passagens",
-    },
-  ],
+  title: "Milhas na Prática, um passo a passo para",
+  titleAccent: "Liberdade",
+  text: `Não é um curso comum, é um mapa, um passo a passo que você vai aplicar. Paullo Pietroski e Isabela Crozetta uniram anos de experiência no mercado de milhas e criaram o MÉTODO SIM que já ajudou dezenas de mentorados a viajar o mundo gastando uma fração do valor.\n\nNão é sobre acumular milhas. É sobre construir um estilo de vida diferente.`,
+  stats: [] as Array<{ number: number; prefix: string; suffix: string; label: string }>,
 };
 
 export const MODULES = {
@@ -147,25 +145,62 @@ export const SOCIAL_PROOF = {
   title: "Veja o que os nossos mentorados conquistaram",
   testimonials: [
     {
-      stars: 5,
-      text: "Em 2 meses de curso, consegui emitir minha primeira passagem internacional. Economizei quase R$4.000 numa viagem que eu achava impossível.",
-      name: "PLACEHOLDER_NOME_1",
-      photo: "/testimonials/1.webp",
+      type: "video" as const,
+      videoUrl: "/testimonials/videos/video-fabi-feedback.mp4",
+      name: "Fabi",
+      localidade: "",
     },
     {
-      stars: 5,
-      text: "O segredo do Paullo e da Isa é fazer parecer simples. Eu não sabia nada e hoje gerencio mais de 300 mil milhas em 3 programas diferentes.",
-      name: "PLACEHOLDER_NOME_2",
-      photo: "/testimonials/2.webp",
+      type: "video" as const,
+      videoUrl: "/testimonials/videos/video-fabiane-orlando.mp4",
+      name: "Fabiane",
+      localidade: "Orlando, EUA",
     },
     {
-      stars: 5,
-      text: "A mentoria vale 50x o que paguei. Já economizei mais de R$12 mil usando as estratégias que aprendi. E o melhor: ensinei minha família inteira.",
-      name: "PLACEHOLDER_NOME_3",
-      photo: "/testimonials/3.webp",
+      type: "video" as const,
+      videoUrl: "/testimonials/videos/video-thiza-feedback.mp4",
+      name: "Thiza",
+      localidade: "",
+    },
+    {
+      type: "video" as const,
+      videoUrl: "/testimonials/videos/video-1.mp4",
+      name: "Mentorado",
+      localidade: "",
+    },
+    {
+      type: "video" as const,
+      videoUrl: "/testimonials/videos/video-2.mp4",
+      name: "Mentorado",
+      localidade: "",
+    },
+    {
+      type: "video" as const,
+      videoUrl: "/testimonials/videos/video-3.mp4",
+      name: "Mentorado",
+      localidade: "",
     },
   ],
 };
+
+export const SOCIAL_PROOF_PRINTS = [
+  { src: "/testimonials/prints/print-09.jpeg", alt: "Depoimento cliente" },
+  { src: "/testimonials/prints/print-10.jpeg", alt: "Depoimento cliente" },
+  { src: "/testimonials/prints/print-11.jpeg", alt: "Depoimento cliente" },
+  { src: "/testimonials/prints/print-12.jpg", alt: "Feedback Instagram" },
+  { src: "/testimonials/prints/print-13.jpg", alt: "Feedback Instagram" },
+  { src: "/testimonials/prints/print-14.jpg", alt: "Feedback Instagram" },
+  { src: "/testimonials/prints/print-15.jpeg", alt: "Depoimento cliente" },
+  { src: "/testimonials/prints/print-17.png", alt: "Fabiane em Orlando" },
+  { src: "/testimonials/prints/print-18.jpeg", alt: "Depoimento cliente" },
+  { src: "/testimonials/prints/print-20.png", alt: "Thiza em Santiago" },
+  { src: "/testimonials/prints/print-21.jpg", alt: "Foto cliente" },
+  { src: "/testimonials/prints/print-22.jpg", alt: "Fabi e Rodrigo em Paris" },
+  { src: "/testimonials/prints/print-24.jpg", alt: "Fabi e Rodrigo na executiva" },
+  { src: "/testimonials/prints/print-25.jpg", alt: "Bia e Gi no Cristo Redentor" },
+  { src: "/testimonials/prints/print-26.jpg", alt: "Rodrigo e Richard em Beverly Hills" },
+  { src: "/testimonials/prints/print-27.jpg", alt: "Fabi em Londres" },
+];
 
 export const OFFER = {
   badge: "✦ OFERTA ESPECIAL DE LANÇAMENTO ✦",
@@ -178,7 +213,7 @@ export const OFFER = {
     { icon: "Headphones", text: "Suporte Direto com Mentores" },
     { icon: "RefreshCw", text: "Atualizações Contínuas" },
   ],
-  cta: "QUERO MEU ACESSO AGORA",
+  cta: "QUERO GARANTIR MINHA VAGA",
 };
 
 export const GUARANTEE = {
@@ -207,21 +242,17 @@ export const FAQ_ITEMS = [
     answer:
       "Perfeito. A mentoria foi desenhada exatamente pra quem está começando do zero. Cada módulo constrói em cima do anterior, sem pular etapas.",
   },
-  {
-    question: "Tenho acesso por quanto tempo?",
-    answer: "PLACEHOLDER — definir com cliente: 1 ano? Vitalício?",
-  },
 ];
 
 export const FINAL_CTA = {
   title: "NÃO PERCA ESSA OPORTUNIDADE",
   subtitle:
     "AS VAGAS ESTÃO ACABANDO. O PRÓXIMO VOO EM EXECUTIVA PODE SER O SEU.",
-  cta: "GARANTIR MINHA VAGA AGORA",
+  cta: "QUERO GARANTIR MINHA VAGA",
 };
 
 export const FOOTER = {
-  links: ["PAGAMENTO", "INÍCIO", "GARANTIA", "CONTATO", "FAQ"],
+  links: [],
   copyright: `© 2026 ${PRODUCT.name}. Paullo Pietroski & Isabela Crozetta. Todos os direitos reservados.`,
   disclaimer:
     "Este produto não garante resultados. Resultados variam conforme dedicação individual.",
