@@ -77,6 +77,16 @@ export default function Hero({ onUnlock, isUnlocked, isOfferUnlocked }: HeroProp
           <VSLPlayer onUnlock={onUnlock} />
         </motion.div>
 
+        {HERO.intro && (
+          <motion.p
+            variants={fadeUp}
+            className="text-base sm:text-lg max-w-2xl leading-relaxed"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            {HERO.intro}
+          </motion.p>
+        )}
+
         <motion.p
           variants={fadeUp}
           className="text-base sm:text-lg max-w-2xl leading-relaxed"
@@ -103,6 +113,19 @@ export default function Hero({ onUnlock, isUnlocked, isOfferUnlocked }: HeroProp
               {HERO.cta} →
             </a>
           </motion.div>
+        )}
+
+        {isOfferUnlocked && HERO.outro && (
+          <motion.p
+            variants={fadeUp}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-base sm:text-lg max-w-2xl leading-relaxed mt-2"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            {HERO.outro}
+          </motion.p>
         )}
 
         {isOfferUnlocked && HERO.logos.length > 0 && (

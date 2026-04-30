@@ -22,7 +22,8 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(awk '/^blob/ && $3 > 50000000 {print $3, $4}')",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(npx tsc *)"
     ]
   }
 }

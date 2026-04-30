@@ -14,11 +14,11 @@ export const SITE = {
 };
 
 export const PRICING = {
-  valorTotal: "2.497",
-  precoFinal: "497",
+  valorTotal: "597",
+  precoFinal: "397",
   parcelas: 12,
-  valorParcela: "49,80",
-  garantiaDias: 7,
+  valorParcela: "41,06",
+  garantiaDias: 15,
 };
 
 export const WHATSAPP = {
@@ -34,8 +34,8 @@ export const WHATSAPP = {
 export const MENTORS = {
   paullo: {
     name: "Paullo Pietroski",
-    role: "Especialista em estratégias de milhas aéreas e emissão de passagens internacionais",
-    roleShort: "Especialista em milhas aéreas",
+    role: "Gestor de milhas e especialista em cartões de crédito.",
+    roleShort: "Gestor de milhas e cartões",
     instagram: "paullopietroski.milhas",
     instagramUrl: "https://instagram.com/paullopietroski.milhas",
     photo: "/mentors/paullo.jpg",
@@ -43,8 +43,8 @@ export const MENTORS = {
   },
   isabela: {
     name: "Isabela Crozetta",
-    role: "Especialista em gestão de milhas, acúmulo inteligente e viagens internacionais",
-    roleShort: "Gestora de milhas e viagens",
+    role: "Especialista em acúmulo inteligente e emissões.",
+    roleShort: "Especialista em acúmulo e emissões",
     instagram: "isadasmilhas",
     instagramUrl: "https://instagram.com/isadasmilhas",
     photo: "/mentors/isabela.jpg",
@@ -64,7 +64,11 @@ export const HERO = {
   headline: "Descubra como viajar mais gastando o mesmo ou menos. Aprenda agora a transformar os",
   headlineAccent: "gastos que você já tem hoje",
   headlineSuffix: "em viagens.",
+  intro:
+    "Descubra como transformar os gastos do seu dia a dia em viagens usando o Método S.I.M., que já economizou mais de R$ 400.000 para nossos alunos.",
   subheadline: "O Milha na Prática apresenta o Método SIM é o seu passaporte para as viagens do sonho.",
+  outro:
+    "O Milhas na Prática é o atalho pra você sair do zero e embarcar usando milhas nas viagens dos seus sonhos.",
   cta: "QUERO GARANTIR MINHA VAGA",
   logos: [],
 };
@@ -73,29 +77,29 @@ export const PAIN = {
   title: "VOCÊ JÁ SE SENTIU ASSIM?",
   cards: [
     {
+      icon: "CreditCard",
+      title: "Dinheiro escorrendo pelo ralo?",
+      text: "Você pesquisa em vários sites, entra na CVC, Decolar, Google Voos… e sempre sente que está pagando caro, mas compra assim mesmo.",
+    },
+    {
       icon: "Plane",
       title: "Passagens inacessíveis?",
       text: "Você pesquisa, compara e acha que viajar de avião é privilégio de quem ganha muito. Spoiler: não é.",
     },
     {
-      icon: "CreditCard",
-      title: "Dinheiro escorrendo pelo ralo?",
-      text: "Você pesquisa em vários sites, entra na 123, Decolar, Google Voos e no final compra passagem caro do mesmo jeito.",
-    },
-    {
       icon: "MapPin",
       title: "Mundo lá fora, você aqui?",
-      text: 'Vê stories de gente viajando, se pergunta "como?" e continua adiando a viagem dos sonhos.',
+      text: "Você vê gente com a mesma renda viajando pra fora todo ano e se pergunta 'como?' e continua adiando a viagem dos seus sonhos.",
     },
   ],
   transition:
-    "A verdade é que o que separa você dessas pessoas não é dinheiro. É informação.",
+    "O que separa você dessas pessoas não é dinheiro. É o método.",
 };
 
 export const MENTORS_REVEAL = {
   title: "Milhas na Prática, um passo a passo para",
   titleAccent: "Liberdade",
-  text: `Não é um curso comum, é um mapa, um passo a passo que você vai aplicar. Paullo Pietroski e Isabela Crozetta uniram anos de experiência no mercado de milhas e criaram o MÉTODO SIM que já ajudou dezenas de mentorados a viajar o mundo gastando uma fração do valor.\n\nNão é sobre acumular milhas. É sobre construir um estilo de vida diferente.`,
+  text: `O Milhas na Prática traz um Método exclusivo, criado por Isabela Crozetta e Paullo Pietroski, e já proporcionou aos alunos viagens para os mais diversos destinos, nos Estados Unidos, Europa, Ásia, América do Sul e outros, somando mais de R$ 400.000 de economia em passagens. Com o método, você sabe o que fazer e em qual ordem. Cada aula termina com tarefas específicas: ações claras, aplicáveis, já pensadas pro seu próximo passo, pra você não se perder em um mar de teoria.\n\nMais do que aprender sobre milhas, você tem um passo a passo guiado pra a usar milhas de forma estratégica, até as suas viagens deixarem de ser um evento e se transformarem em rotina.`,
   stats: [] as Array<{ number: number; prefix: string; suffix: string; label: string }>,
 };
 
@@ -106,35 +110,41 @@ export const MODULES = {
   items: [
     {
       icon: "Compass",
-      title: "FUNDAMENTOS",
-      text: "O jogo das milhas explicado do jeito que ninguém te contou. Programas, pontos, transferências — a base que sustenta todo o resto.",
+      title: "CONCEITOS BÁSICOS",
+      text: "Aqui é onde você vai começar a destravar no mundo das milhas e construir a sua base, pra você que está saindo do zero não ficar perdido.",
     },
     {
-      icon: "CreditCard",
-      title: "CARTÕES PREMIUM",
-      text: "Qual cartão pedir, como isentar anuidade, quando migrar. Estratégia certeira pro seu perfil e pro seu bolso.",
-    },
-    {
-      icon: "Target",
-      title: "EMISSÃO ESTRATÉGICA",
-      text: "A arte de encontrar disponibilidade, escolher rotas inteligentes e emitir passagens que custam uma fração do preço normal.",
+      icon: "Coins",
+      title: "ACÚMULO INTELIGENTE",
+      text: "Todas as formas práticas de acumular milhas no dia a dia, sem gastar mais do que você já gasta hoje — a base que sustenta todo o resto.",
     },
     {
       icon: "ArrowLeftRight",
-      title: "TRANSFERÊNCIAS",
-      text: "O segredo dos milheiros baratos. Promoções bonificadas, timing certo, qual programa priorizar em cada momento.",
+      title: "TRANSFERÊNCIAS, CLUBES E PROMOÇÕES",
+      text: "O segredo dos milheiros baratos. A dinâmica das transferências bonificadas e dos clubes de milhas pra adquirir milhas a baixo custo e de forma estratégica.",
     },
     {
-      icon: "Globe",
-      title: "PROGRAMAS INTERNACIONAIS",
-      text: "Ibéria, American Airlines, TAP, United... Destrave rotas que a maioria nem sabe que existem.",
+      icon: "Calculator",
+      title: "MATEMÁTICA DAS MILHAS",
+      text: "Pare de adivinhar e passe a analisar, em números, quando uma emissão ou compra de milhas vale a pena, se é melhor acumular pontos ou receber cashback, e se vale a pena trocar seus pontos por produtos.",
     },
     {
-      icon: "Gem",
-      title: "LIFESTYLE & LOUNGES",
-      text: "Salas VIP, upgrades, hotéis com pontos, experiências que transformam qualquer viagem numa memória inesquecível.",
+      icon: "CreditCard",
+      title: "CARTÕES DE CRÉDITO A SEU FAVOR",
+      text: "Estratégia certeira pro seu perfil e pro seu bolso. Como escolher e usar cartões que trabalham pra você, mesmo que hoje você só tenha um cartão básico.",
+    },
+    {
+      icon: "Plane",
+      title: "EMISSÕES",
+      text: "A arte de encontrar disponibilidade, escolher rotas inteligentes e emitir passagens promocionais no Brasil e no mundo, usando as ferramentas certas.",
     },
   ],
+  bonus: {
+    icon: "Gift",
+    label: "BÔNUS EXCLUSIVO",
+    title: "ALÉM DA PASSAGEM",
+    text: "Aprendendo a usar ferramentas pra deixar a viagem mais barata, confortável e inteligente. Entenda seus direitos como passageiro, tenha acesso a aceleradores de cálculo e pesquisa e aprenda a economizar com hospedagens usando suas milhas.",
+  },
 };
 
 export const SOCIAL_PROOF = {
@@ -150,36 +160,6 @@ export const SOCIAL_PROOF = {
       type: "video" as const,
       videoUrl: `${R2_BASE}/Video%20Fabi%20Feedback.mp4`,
       name: "Fabi",
-      localidade: "",
-    },
-    {
-      type: "video" as const,
-      videoUrl: `${R2_BASE}/Video%20Fabiane%20Em%20Orlando.mp4`,
-      name: "Fabiane",
-      localidade: "Orlando, EUA",
-    },
-    {
-      type: "video" as const,
-      videoUrl: `${R2_BASE}/Video%20Thiza%20Feedback.mp4`,
-      name: "Thiza",
-      localidade: "",
-    },
-    {
-      type: "video" as const,
-      videoUrl: `${R2_BASE}/Whatsapp%20Video%202026-03-18%20At%2011.13.39.mp4`,
-      name: "Mentorado",
-      localidade: "",
-    },
-    {
-      type: "video" as const,
-      videoUrl: `${R2_BASE}/Whatsapp%20Video%202026-03-20%20At%2016.30.11.mp4`,
-      name: "Mentorado",
-      localidade: "",
-    },
-    {
-      type: "video" as const,
-      videoUrl: `${R2_BASE}/Vid-20251115-Wa0005.mp4`,
-      name: "Mentorado",
       localidade: "",
     },
     {
@@ -238,10 +218,10 @@ export const OFFER = {
   badge: "✦ OFERTA ESPECIAL DE LANÇAMENTO ✦",
   title: `A JORNADA ${PRODUCT.name.toUpperCase()}`,
   items: [
-    { icon: "BookOpen", text: "6 Módulos Completos" },
-    { icon: "MessageCircle", text: "Comunidade VIP no WhatsApp" },
-    { icon: "FileSpreadsheet", text: "Planilha de Gestão Premium" },
-    { icon: "Sparkles", text: "Bônus: Trilhas Exclusivas" },
+    { icon: "BookOpen", text: "6 módulos completos" },
+    { icon: "MessageCircle", text: "Comunidade exclusiva no WhatsApp" },
+    { icon: "FileSpreadsheet", text: "Mapa Mental de Emissões com milhas" },
+    { icon: "Sparkles", text: "Bônus Exclusivos" },
     { icon: "Headphones", text: "Suporte Direto com Mentores" },
     { icon: "RefreshCw", text: "Atualizações Contínuas" },
   ],
@@ -249,8 +229,8 @@ export const OFFER = {
 };
 
 export const GUARANTEE = {
-  title: "GARANTIA BLINDADA DE 7 DIAS",
-  text: "Você tem 7 dias para testar todo o conteúdo da mentoria. Se por qualquer motivo sentir que não é pra você, basta nos enviar uma mensagem e devolvemos 100% do seu investimento.\n\nSem perguntas. Sem burocracia. O risco é 100% nosso.",
+  title: "GARANTIA ESTENDIDA DE 15 DIAS",
+  text: "Use o conteúdo por 15 dias, aplique o que conseguir nesse período. Se achar que o mundo das milhas não é pra você, devolvemos 100% do valor pago.\n\nSem perguntas. Sem burocracia. O risco é 100% nosso. (Mas a gente acha que milhas são pra você!)",
 };
 
 export const FAQ_ITEMS = [
@@ -267,7 +247,7 @@ export const FAQ_ITEMS = [
   {
     question: "Funciona pra viagens internacionais?",
     answer:
-      "Sim — e é justamente nas internacionais que a economia é mais absurda. Temos módulo exclusivo sobre programas internacionais e rotas que a maioria desconhece.",
+      "Sim. Dentro do curso você aprende como usar as companhias aéreas e parcerias pra diversas rotas internacionais, usando milhas de várias companhias aéreas.",
   },
   {
     question: "E se eu não entender nada de milhas?",

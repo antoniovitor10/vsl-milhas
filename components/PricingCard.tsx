@@ -144,7 +144,7 @@ export default function PricingCard() {
                   className="mt-3 text-xs sm:text-sm font-medium text-center max-w-xs"
                   style={{ color: "var(--text-secondary)" }}
                 >
-                  Menos de R$ 2 por dia para transformar para sempre como você viaja.
+                  R$ 1,35 por dia para você transformar para sempre como você viaja.
                 </p>
               </div>
 

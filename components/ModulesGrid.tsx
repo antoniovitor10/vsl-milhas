@@ -7,6 +7,10 @@ import {
   ArrowLeftRight,
   Globe,
   Gem,
+  Coins,
+  Calculator,
+  Plane,
+  Gift,
 } from "lucide-react";
 import { MODULES } from "@/lib/constants";
 import { fadeUp, stagger, scaleIn, viewportOnce } from "@/lib/animations";
@@ -18,6 +22,10 @@ const iconMap: Record<string, React.ReactNode> = {
   ArrowLeftRight: <ArrowLeftRight size={26} />,
   Globe: <Globe size={26} />,
   Gem: <Gem size={26} />,
+  Coins: <Coins size={26} />,
+  Calculator: <Calculator size={26} />,
+  Plane: <Plane size={26} />,
+  Gift: <Gift size={32} />,
 };
 
 export default function ModulesGrid() {
@@ -99,6 +107,71 @@ export default function ModulesGrid() {
             </motion.div>
           ))}
         </motion.div>
+
+        {MODULES.bonus && (
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            variants={stagger}
+            className="mt-10"
+          >
+            <motion.div
+              variants={scaleIn}
+              className="relative rounded-3xl p-8 sm:p-10 overflow-hidden"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(245,158,11,0.08), rgba(37,99,235,0.08))",
+                border: "2px solid rgba(245,158,11,0.4)",
+                boxShadow:
+                  "0 0 60px rgba(245,158,11,0.18), 0 0 0 1px rgba(245,158,11,0.15)",
+              }}
+            >
+              <div
+                className="absolute top-0 left-0 right-0 h-1"
+                style={{
+                  background:
+                    "linear-gradient(90deg, transparent, #F59E0B, transparent)",
+                }}
+              />
+              <div className="flex flex-col sm:flex-row items-start gap-6">
+                <div
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
+                  style={{
+                    background: "rgba(245,158,11,0.15)",
+                    color: "#F59E0B",
+                    border: "1px solid rgba(245,158,11,0.3)",
+                  }}
+                >
+                  {iconMap[MODULES.bonus.icon]}
+                </div>
+                <div className="flex-1 flex flex-col gap-3">
+                  <span
+                    className="text-xs font-bold tracking-[0.2em]"
+                    style={{ color: "#F59E0B" }}
+                  >
+                    ✦ {MODULES.bonus.label} ✦
+                  </span>
+                  <h3
+                    className="text-xl sm:text-2xl font-extrabold tracking-tight"
+                    style={{
+                      fontFamily: "var(--font-sora), sans-serif",
+                      color: "var(--text-primary)",
+                    }}
+                  >
+                    {MODULES.bonus.title}
+                  </h3>
+                  <p
+                    className="text-sm sm:text-base leading-relaxed"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
+                    {MODULES.bonus.text}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
       </div>
     </section>
   );
