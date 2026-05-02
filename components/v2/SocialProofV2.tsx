@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import { SOCIAL_PROOF } from "@/lib/constants";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import VTurbPlayer from "@/components/VTurbPlayer";
 
 export default function SocialProofV2() {
   const ref = useRef<HTMLElement>(null);
@@ -112,14 +113,7 @@ export default function SocialProofV2() {
               }}
             >
               <div style={{ aspectRatio: "9/16", maxHeight: 420, background: "#000" }}>
-                <video
-                  controls
-                  playsInline
-                  preload="metadata"
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                >
-                  <source src={t.videoUrl} type="video/mp4" />
-                </video>
+                <VTurbPlayer playerId={t.vturbId} />
               </div>
               <div
                 style={{

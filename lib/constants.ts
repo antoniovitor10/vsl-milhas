@@ -52,10 +52,6 @@ export const MENTORS = {
   },
 };
 
-// Vídeos hospedados na R2 (Cloudflare)
-const R2_BASE = "https://pub-e56ffdd6bdf7488fa40810b0c7b6601a.r2.dev";
-
-export const HERO_VIDEO_URL = `${R2_BASE}/Vsl%201.mp4`;
 export const HERO_VIDEO_AUTO_UNLOCK_SECONDS = 30;
 export const OFFER_UNLOCK_SECONDS = 30;
 
@@ -158,37 +154,37 @@ export const SOCIAL_PROOF = {
   testimonials: [
     {
       type: "video" as const,
-      videoUrl: `${R2_BASE}/Video%20Fabi%20Feedback.mp4`,
-      name: "Fabi",
-      localidade: "",
-    },
-    {
-      type: "video" as const,
-      videoUrl: `${R2_BASE}/Video%20Fabiane%20Em%20Orlando.mp4`,
+      vturbId: "69f50601df5136d078c80f88",
       name: "Fabiane",
       localidade: "Orlando, EUA",
     },
     {
       type: "video" as const,
-      videoUrl: `${R2_BASE}/Video%20Thiza%20Feedback.mp4`,
+      vturbId: "69f50609e14d8c41e4c4ca88",
       name: "Thiza",
       localidade: "",
     },
     {
       type: "video" as const,
-      videoUrl: `${R2_BASE}/Whatsapp%20Video%202026-03-18%20At%2011.13.39.mp4`,
+      vturbId: "69f5063c6b4ac768f9516230",
       name: "Mentorado",
       localidade: "",
     },
     {
       type: "video" as const,
-      videoUrl: `${R2_BASE}/Whatsapp%20Video%202026-03-20%20At%2016.30.11.mp4`,
+      vturbId: "69f506186b4ac768f95161b8",
+      name: "Fabiane",
+      localidade: "",
+    },
+    {
+      type: "video" as const,
+      vturbId: "69f50661f47680e2e148e3fa",
       name: "Mentorado",
       localidade: "",
     },
     {
       type: "video" as const,
-      videoUrl: `${R2_BASE}/Vid-20251115-Wa0005.mp4`,
+      vturbId: "69f506736b4ac768f951635f",
       name: "Mentorado",
       localidade: "",
     },

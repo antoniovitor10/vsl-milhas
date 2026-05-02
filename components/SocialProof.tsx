@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { SOCIAL_PROOF } from "@/lib/constants";
 import { fadeUp, stagger, scaleIn, viewportOnce } from "@/lib/animations";
 import AnimatedCounter from "./AnimatedCounter";
+import VTurbPlayer from "./VTurbPlayer";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function SocialProof() {
@@ -124,18 +125,9 @@ export default function SocialProof() {
               >
                 <div
                   className="w-full relative"
-                  style={{ aspectRatio: "9/16", maxHeight: "480px" }}
+                  style={{ aspectRatio: "9/16", maxHeight: "480px", background: "#000" }}
                 >
-                  <video
-                    controls
-                    playsInline
-                    preload="metadata"
-                    className="w-full h-full object-cover"
-                    style={{ background: "#000" }}
-                  >
-                    <source src={testimonial.videoUrl} type="video/mp4" />
-                    Seu navegador não suporta vídeo.
-                  </video>
+                  <VTurbPlayer playerId={testimonial.vturbId} />
                 </div>
 
                 <div className="p-4 flex items-center gap-3">

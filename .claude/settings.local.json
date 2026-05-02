@@ -23,7 +23,11 @@
       "Bash(git commit *)",
       "Bash(awk '/^blob/ && $3 > 50000000 {print $3, $4}')",
       "Bash(git push *)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(ssh-keygen *)",
+      "Bash(ssh *)",
+      "Bash(grep -i \"\\\\.mp4$\")",
+      "Bash(scp -i ~/.ssh/hostinger_milhas -P 65002 -r -q out/* u680029275@82.25.73.158:~/domains/milhasnapratica360.com/public_html/)"
     ]
   }
 }
