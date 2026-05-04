@@ -19,36 +19,24 @@ export default function VSLPlayer({
   const unlockedRef = useRef(false);
 
   useEffect(() => {
-    let elapsedMs = 0;
-    let lastTick: number | null = null;
-    let isPlaying = false;
-    let rafId: number | null = null;
     let attachedVideo: HTMLVideoElement | null = null;
-    const targetMs = autoUnlockDelaySeconds * 1000;
+    const targetSeconds = autoUnlockDelaySeconds;
 
-    const tick = () => {
-      if (unlockedRef.current) return;
-      const now = performance.now();
-      if (isPlaying && lastTick !== null) {
-        elapsedMs += now - lastTick;
-      }
-      lastTick = now;
-      if (elapsedMs >= targetMs) {
+    const checkUnlock = () => {
+      if (unlockedRef.current || !attachedVideo) return;
+      if (attachedVideo.currentTime >= targetSeconds) {
         unlockedRef.current = true;
         trackEvent("vsl_auto_unlock", { delay_seconds: autoUnlockDelaySeconds });
         onUnlock();
-        return;
       }
-      rafId = window.requestAnimationFrame(tick);
     };
 
-    const onPlay = () => {
-      if (isPlaying) return;
-      isPlaying = true;
-      lastTick = performance.now();
-    };
-    const onPause = () => {
-      isPlaying = false;
+    const onTimeUpdate = () => checkUnlock();
+    const onEnded = () => {
+      if (unlockedRef.current) return;
+      unlockedRef.current = true;
+      trackEvent("vsl_auto_unlock", { delay_seconds: autoUnlockDelaySeconds });
+      onUnlock();
     };
 
     const findVideo = (): HTMLVideoElement | null => {
@@ -69,27 +57,19 @@ export default function VSLPlayer({
       const video = findVideo();
       if (!video) return;
       attachedVideo = video;
-      video.addEventListener("play", onPlay);
-      video.addEventListener("playing", onPlay);
-      video.addEventListener("pause", onPause);
-      video.addEventListener("ended", onPause);
-      video.addEventListener("waiting", onPause);
-      if (!video.paused && !video.ended) onPlay();
+      video.addEventListener("timeupdate", onTimeUpdate);
+      video.addEventListener("ended", onEnded);
+      checkUnlock();
     };
 
     const pollId = window.setInterval(tryAttach, 500);
     tryAttach();
-    rafId = window.requestAnimationFrame(tick);
 
     return () => {
       window.clearInterval(pollId);
-      if (rafId !== null) window.cancelAnimationFrame(rafId);
       if (attachedVideo) {
-        attachedVideo.removeEventListener("play", onPlay);
-        attachedVideo.removeEventListener("playing", onPlay);
-        attachedVideo.removeEventListener("pause", onPause);
-        attachedVideo.removeEventListener("ended", onPause);
-        attachedVideo.removeEventListener("waiting", onPause);
+        attachedVideo.removeEventListener("timeupdate", onTimeUpdate);
+        attachedVideo.removeEventListener("ended", onEnded);
       }
     };
   }, [autoUnlockDelaySeconds, onUnlock]);
