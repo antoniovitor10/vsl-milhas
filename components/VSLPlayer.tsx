@@ -41,13 +41,28 @@ export default function VSLPlayer({
 
     const findVideo = (): HTMLVideoElement | null => {
       const wrapper = document.getElementById(`vid-${HERO_VTURB_ID}`);
-      if (!wrapper) return null;
-      const direct = wrapper.querySelector("video") as HTMLVideoElement | null;
-      if (direct) return direct;
-      const shadow = (wrapper as HTMLElement & { shadowRoot?: ShadowRoot | null })
-        .shadowRoot;
-      if (shadow) {
-        return shadow.querySelector("video") as HTMLVideoElement | null;
+      if (wrapper) {
+        const direct = wrapper.querySelector("video") as HTMLVideoElement | null;
+        if (direct) return direct;
+        const shadow = (wrapper as HTMLElement & { shadowRoot?: ShadowRoot | null })
+          .shadowRoot;
+        if (shadow) {
+          const inShadow = shadow.querySelector("video") as HTMLVideoElement | null;
+          if (inShadow) return inShadow;
+        }
+      }
+      const anyVideo = document.querySelector("video") as HTMLVideoElement | null;
+      if (anyVideo) return anyVideo;
+      const iframe = document.querySelector("iframe") as HTMLIFrameElement | null;
+      if (iframe) {
+        try {
+          const doc = iframe.contentDocument;
+          if (doc) {
+            return doc.querySelector("video") as HTMLVideoElement | null;
+          }
+        } catch {
+          return null;
+        }
       }
       return null;
     };
@@ -59,14 +74,24 @@ export default function VSLPlayer({
       attachedVideo = video;
       video.addEventListener("timeupdate", onTimeUpdate);
       video.addEventListener("ended", onEnded);
+      console.log("[VSL] video attached, duration=", video.duration, "currentTime=", video.currentTime);
       checkUnlock();
     };
+
+    const debugId = window.setInterval(() => {
+      if (attachedVideo) {
+        console.log("[VSL] currentTime=", attachedVideo.currentTime.toFixed(1), "target=", targetSeconds);
+      } else {
+        console.log("[VSL] no video found yet");
+      }
+    }, 3000);
 
     const pollId = window.setInterval(tryAttach, 500);
     tryAttach();
 
     return () => {
       window.clearInterval(pollId);
+      window.clearInterval(debugId);
       if (attachedVideo) {
         attachedVideo.removeEventListener("timeupdate", onTimeUpdate);
         attachedVideo.removeEventListener("ended", onEnded);
