@@ -87,13 +87,15 @@ export default function Hero({ onUnlock, isUnlocked, isOfferUnlocked }: HeroProp
           </motion.p>
         )}
 
-        <motion.p
-          variants={fadeUp}
-          className="text-base sm:text-lg max-w-2xl leading-relaxed"
-          style={{ color: "var(--text-secondary)" }}
-        >
-          {HERO.subheadline}
-        </motion.p>
+        {HERO.subheadline && (
+          <motion.p
+            variants={fadeUp}
+            className="text-base sm:text-lg max-w-2xl leading-relaxed"
+            style={{ color: "var(--text-secondary)" }}
+          >
+            {HERO.subheadline}
+          </motion.p>
+        )}
 
         {isOfferUnlocked && (
           <motion.div

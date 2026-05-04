@@ -57,12 +57,11 @@ export const OFFER_UNLOCK_SECONDS = 30;
 
 export const HERO = {
   badge: "",
-  headline: "Descubra como viajar mais gastando o mesmo ou menos. Aprenda agora a transformar os",
-  headlineAccent: "gastos que você já tem hoje..",
-  headlineSuffix: "em viagens.",
-  intro:
-    "Descubra como transformar os gastos do seu dia a dia em viagens usando o Método S.I.M., que já economizou mais de R$ 400.000 para nossos alunos.",
-  subheadline: "O Milha na Prática apresenta o Método SIM é o seu passaporte para as viagens do sonho.",
+  headline: "Descubra como transformar os gastos do seu dia a dia em viagens usando o",
+  headlineAccent: "Método S.I.M.",
+  headlineSuffix: ", que já economizou mais de R$ 400.000 para nossos alunos.",
+  intro: "",
+  subheadline: "",
   outro:
     "O Milhas na Prática é o atalho pra você sair do zero e embarcar usando milhas nas viagens dos seus sonhos.",
   cta: "QUERO GARANTIR MINHA VAGA",
@@ -70,7 +69,7 @@ export const HERO = {
 };
 
 export const PAIN = {
-  title: "VOCÊ JÁ SE SENTIU ASSIM?",
+  title: "VOCÊ JÁ PASSOU POR ISSO?",
   cards: [
     {
       icon: "CreditCard",
