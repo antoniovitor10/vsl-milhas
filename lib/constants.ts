@@ -35,7 +35,7 @@ export const MENTORS = {
   paullo: {
     name: "Paullo Pietroski",
     role: "Gestor de milhas e especialista em cartões de crédito.",
-    roleShort: "Gestor de milhas e cartões",
+    roleShort: "Gestor de milhas e especialista em cartões de crédito.",
     instagram: "paullopietroski.milhas",
     instagramUrl: "https://instagram.com/paullopietroski.milhas",
     photo: "/mentors/paullo.jpg",
@@ -44,7 +44,7 @@ export const MENTORS = {
   isabela: {
     name: "Isabela Crozetta",
     role: "Especialista em acúmulo inteligente e emissões.",
-    roleShort: "Especialista em acúmulo e emissões",
+    roleShort: "Especialista em acúmulo inteligente e emissões.",
     instagram: "isadasmilhas",
     instagramUrl: "https://instagram.com/isadasmilhas",
     photo: "/mentors/isabela.jpg",
