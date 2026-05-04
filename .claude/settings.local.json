@@ -27,7 +27,26 @@
       "Bash(ssh-keygen *)",
       "Bash(ssh *)",
       "Bash(grep -i \"\\\\.mp4$\")",
-      "Bash(scp -i ~/.ssh/hostinger_milhas -P 65002 -r -q out/* u680029275@82.25.73.158:~/domains/milhasnapratica360.com/public_html/)"
+      "Bash(scp -i ~/.ssh/hostinger_milhas -P 65002 -r -q out/* u680029275@82.25.73.158:~/domains/milhasnapratica360.com/public_html/)",
+      "Bash(scp -i ~/.ssh/hostinger_milhas -P 65002 -r out/* u680029275@82.25.73.158:~/domains/milhasnapratica360.com/public_html/)",
+      "Bash(scp -i ~/.ssh/hostinger_milhas -P 65002 out/testimonials/prints/print-18.jpeg u680029275@82.25.73.158:~/domains/milhasnapratica360.com/public_html/testimonials/prints/)",
+      "Bash(curl -s https://milhasnapratica360.com/)",
+      "Bash(curl -s \"https://milhasnapratica360.com/\" -H \"Cache-Control: no-cache\" -o /tmp/live.html)",
+      "Read(//tmp/**)",
+      "Bash(curl -s \"https://milhasnapratica360.com/\")",
+      "Bash(curl -s \"https://milhasnapratica360.com/_next/static/chunks/05p54vyoaz99j.js\")",
+      "Bash(grep -oE '.{0,40}testimonial[^,]{0,20}' /tmp/c.js)",
+      "Bash(grep -oE '.{0,80}slice\\\\\\(0,2\\\\\\)' /tmp/c.js)",
+      "Bash(curl -s \"https://milhasnapratica360.com/milhas\" -o /tmp/milhas.html)",
+      "Bash(curl -s \"https://milhasnapratica360.com/v2\" -o /tmp/v2.html)",
+      "Bash(curl -sI \"https://milhasnapratica360.com/milhas/\")",
+      "Bash(curl -s \"https://milhasnapratica360.com/milhas/\" -o /tmp/m.html)",
+      "Bash(curl -s \"https://milhasnapratica360.com/_next/static/chunks/00l-yd3t8dvwz.js\")",
+      "Bash(grep -oE '.{0,80}slice\\\\\\(0,2\\\\\\).{0,80}' /tmp/x.js)",
+      "Bash(curl -sI \"https://milhasnapratica360.com/\")",
+      "Bash(curl -sI \"https://milhasnapratica360.com/_next/static/chunks/05p54vyoaz99j.js\")",
+      "Bash(curl -sI \"https://milhasnapratica360.com/?v=$\\(date +%s\\)\")",
+      "Bash(curl -s \"https://milhasnapratica360.com/?nocache=$\\(date +%s\\)\" -H \"Pragma: no-cache\" -H \"Cache-Control: no-cache\")"
     ]
   }
 }

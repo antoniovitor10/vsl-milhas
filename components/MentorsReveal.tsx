@@ -32,11 +32,10 @@ export default function MentorsReveal() {
           >
             <div>
               <h2
-                className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-balance"
                 style={{ fontFamily: "var(--font-sora), sans-serif" }}
               >
-                {MENTORS_REVEAL.title}
-                <br />
+                {MENTORS_REVEAL.title}{" "}
                 <span style={{ color: "var(--accent)" }}>
                   {MENTORS_REVEAL.titleAccent}
                 </span>
@@ -114,6 +113,11 @@ export default function MentorsReveal() {
                     src={mentor.photo}
                     alt={mentor.name}
                     className="w-full h-full object-cover"
+                    style={
+                      mentor.name === "Paullo Pietroski"
+                        ? { objectPosition: "35% 28%", transform: "scale(1.9)", transformOrigin: "35% 28%" }
+                        : undefined
+                    }
                     loading="lazy"
                   />
                 </div>

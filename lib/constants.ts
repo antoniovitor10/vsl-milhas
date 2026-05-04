@@ -94,7 +94,7 @@ export const PAIN = {
 
 export const MENTORS_REVEAL = {
   title: "Milhas na Prática, um passo a passo para",
-  titleAccent: "Liberdade",
+  titleAccent: "conhecer o mundo",
   text: `O Milhas na Prática traz um Método exclusivo, criado por Isabela Crozetta e Paullo Pietroski, e já proporcionou aos alunos viagens para os mais diversos destinos, nos Estados Unidos, Europa, Ásia, América do Sul e outros, somando mais de R$ 400.000 de economia em passagens. Com o método, você sabe o que fazer e em qual ordem. Cada aula termina com tarefas específicas: ações claras, aplicáveis, já pensadas pro seu próximo passo, pra você não se perder em um mar de teoria.\n\nMais do que aprender sobre milhas, você tem um passo a passo guiado pra a usar milhas de forma estratégica, até as suas viagens deixarem de ser um evento e se transformarem em rotina.`,
   stats: [] as Array<{ number: number; prefix: string; suffix: string; label: string }>,
 };

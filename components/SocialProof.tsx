@@ -45,7 +45,7 @@ export default function SocialProof() {
         >
           <motion.div
             variants={fadeUp}
-            className="text-6xl sm:text-7xl md:text-8xl font-extrabold leading-none mb-3"
+            className="text-5xl sm:text-7xl md:text-8xl font-extrabold leading-none mb-3 whitespace-nowrap"
             style={{
               fontFamily: "var(--font-sora), sans-serif",
               color: "var(--accent)",
@@ -94,7 +94,7 @@ export default function SocialProof() {
 
           <div
             ref={scrollRef}
-            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-thin pb-4 px-1"
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-thin pb-4 px-1 items-start"
             style={{
               scrollbarWidth: "thin",
               scrollbarColor: "rgba(37,99,235,0.4) transparent",
@@ -124,43 +124,15 @@ export default function SocialProof() {
                 }}
               >
                 <div
-                  className="w-full relative"
-                  style={{ aspectRatio: "9/16", maxHeight: "480px", background: "#000" }}
+                  className="w-full relative overflow-hidden"
+                  style={{ aspectRatio: "9/16", background: "#000" }}
                 >
-                  <VTurbPlayer playerId={testimonial.vturbId} />
+                  <VTurbPlayer
+                    playerId={testimonial.vturbId}
+                    style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+                  />
                 </div>
 
-                <div className="p-4 flex items-center gap-3">
-                  <div
-                    className="w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0"
-                    style={{
-                      background: "rgba(37,99,235,0.15)",
-                      color: "var(--accent)",
-                      border: "1px solid rgba(37,99,235,0.3)",
-                    }}
-                  >
-                    {testimonial.name.slice(0, 2).toUpperCase()}
-                  </div>
-                  <div>
-                    <p
-                      className="text-sm font-bold"
-                      style={{
-                        color: "var(--text-primary)",
-                        fontFamily: "var(--font-sora), sans-serif",
-                      }}
-                    >
-                      {testimonial.name}
-                    </p>
-                    {testimonial.localidade && (
-                      <p
-                        className="text-xs"
-                        style={{ color: "var(--text-muted)" }}
-                      >
-                        {testimonial.localidade}
-                      </p>
-                    )}
-                  </div>
-                </div>
               </motion.div>
             ))}
           </div>

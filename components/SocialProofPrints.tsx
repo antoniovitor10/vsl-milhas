@@ -37,7 +37,7 @@ export default function SocialProofPrints() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <motion.h2
-          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-4"
+          className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-center mb-4 text-balance"
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
@@ -46,7 +46,7 @@ export default function SocialProofPrints() {
         >
           Resultados reais de{" "}
           <span
-            className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
+            className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent whitespace-nowrap"
           >
             pessoas reais
           </span>
@@ -60,7 +60,7 @@ export default function SocialProofPrints() {
           variants={fadeUp}
           style={{ color: "var(--text-muted)" }}
         >
-          Prints de WhatsApp, Instagram e fotos dos nossos mentorados viajando pelo mundo
+          Experiências, relatos e fotos dos nossos mentorados viajando pelo mundo
         </motion.p>
 
         <div className="columns-2 sm:columns-3 md:columns-4 lg:columns-5 gap-4 space-y-4">

@@ -43,7 +43,7 @@ export default function RootLayout({
         />
         <link
           rel="preload"
-          href="https://scripts.converteai.net/ab98406f-b96d-4059-a1b9-abd513177fe5/players/69f505fa6b4ac768f951614c/v4/player.js"
+          href="https://scripts.converteai.net/ab98406f-b96d-4059-a1b9-abd513177fe5/players/69f8c100d80c2e54d8dfaee5/v4/player.js"
           as="script"
         />
         <link

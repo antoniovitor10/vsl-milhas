@@ -5,7 +5,7 @@ import { HERO_VIDEO_AUTO_UNLOCK_SECONDS } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import VTurbPlayer from "./VTurbPlayer";
 
-const HERO_VTURB_ID = "69f505fa6b4ac768f951614c";
+const HERO_VTURB_ID = "69f8c100d80c2e54d8dfaee5";
 
 interface VSLPlayerProps {
   onUnlock: () => void;
@@ -27,8 +27,11 @@ export default function VSLPlayer({
 
   return (
     <div className="w-full mt-8 relative z-10">
-      <div className="relative mx-auto w-full max-w-[420px] sm:max-w-[460px] md:max-w-[520px] rounded-xl sm:rounded-2xl overflow-hidden border border-slate-800 shadow-[0_0_60px_rgba(37,99,235,0.25),0_0_0_1px_rgba(37,99,235,0.2)] pulse-blue transition-all duration-300">
-        <VTurbPlayer playerId={HERO_VTURB_ID} />
+      <div className="relative mx-auto w-full max-w-[400px] rounded-xl sm:rounded-2xl overflow-hidden border border-slate-800 shadow-[0_0_60px_rgba(37,99,235,0.25),0_0_0_1px_rgba(37,99,235,0.2)] pulse-blue transition-all duration-300">
+        <VTurbPlayer
+          playerId={HERO_VTURB_ID}
+          style={{ margin: "0 auto", maxWidth: 400 }}
+        />
       </div>
     </div>
   );
