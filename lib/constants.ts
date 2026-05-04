@@ -52,8 +52,8 @@ export const MENTORS = {
   },
 };
 
-export const HERO_VIDEO_AUTO_UNLOCK_SECONDS = 30;
-export const OFFER_UNLOCK_SECONDS = 30;
+export const HERO_VIDEO_AUTO_UNLOCK_SECONDS = 12 * 60;
+export const OFFER_UNLOCK_SECONDS = 12 * 60;
 
 export const HERO = {
   badge: "",
