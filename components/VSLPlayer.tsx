@@ -36,23 +36,32 @@ export default function VSLPlayer({
   useEffect(() => {
     const targetSeconds = autoUnlockDelaySeconds;
     const wrapperId = `vid-${HERO_VTURB_ID}`;
-    let lastSeen = 0;
+    const wrapper = document.getElementById(wrapperId);
+
+    let apiPollId: number | null = null;
+    let videoPollId: number | null = null;
+    let attachedVideo: HTMLVideoElement | null = null;
+
+    const cleanupTimers = () => {
+      if (apiPollId !== null) window.clearInterval(apiPollId);
+      if (videoPollId !== null) window.clearInterval(videoPollId);
+      apiPollId = null;
+      videoPollId = null;
+    };
 
     const fireUnlock = () => {
       if (unlockedRef.current) return;
       unlockedRef.current = true;
       trackEvent("vsl_auto_unlock", { delay_seconds: autoUnlockDelaySeconds });
       onUnlock();
+      cleanupTimers();
     };
 
     const checkAndMaybeUnlock = (currentTime: number) => {
       if (typeof currentTime !== "number" || Number.isNaN(currentTime)) return;
-      lastSeen = currentTime;
       if (currentTime >= targetSeconds) fireUnlock();
     };
 
-    // Strategy 1: events on the <vturb-smartplayer> custom element
-    const wrapper = document.getElementById(wrapperId);
     const elHandler = (ev: Event) => {
       const detail = (ev as CustomEvent).detail as
         | { currentTime?: number; current_time?: number }
@@ -62,98 +71,73 @@ export default function VSLPlayer({
       if (typeof detail === "number") ct = detail;
       else if (detail && typeof detail === "object")
         ct = detail.currentTime ?? detail.current_time;
-      if (ct === undefined && wrapper) {
-        const w = wrapper as HTMLElement & { currentTime?: number };
-        ct = w.currentTime;
-      }
-      console.log("[VSL] element event", ev.type, "ct=", ct);
       if (ct !== undefined) checkAndMaybeUnlock(ct);
     };
-    const elEvents = ["timeupdate", "play", "playing", "pause", "ended"];
+    const elEvents = ["timeupdate", "ended"];
     if (wrapper) {
       elEvents.forEach((e) => wrapper.addEventListener(e, elHandler));
     }
 
-    // Strategy 2: poll the smartplayer global API
     const getInstance = (): VTurbInstance | null => {
       const inst = window.smartplayer?.instances;
       if (!inst) return null;
       if (typeof (inst as { get?: unknown }).get === "function") {
-        return (inst as { get: (id: string) => VTurbInstance | undefined }).get(
-          HERO_VTURB_ID
-        ) ?? null;
+        return (
+          (inst as { get: (id: string) => VTurbInstance | undefined }).get(
+            HERO_VTURB_ID
+          ) ?? null
+        );
       }
       const rec = inst as Record<string, VTurbInstance>;
-      return (
-        rec[HERO_VTURB_ID] ?? rec[wrapperId] ?? Object.values(rec)[0] ?? null
-      );
+      return rec[HERO_VTURB_ID] ?? rec[wrapperId] ?? null;
     };
 
     let apiAttached = false;
-    const apiTryAttach = () => {
-      if (apiAttached) return;
-      const instance = getInstance();
-      if (!instance) return;
-      apiAttached = true;
-      console.log("[VSL] smartplayer instance found", instance);
-      if (typeof instance.on === "function") {
-        instance.on("timeupdate", (...args: unknown[]) => {
-          const arg = args[0] as { currentTime?: number } | number | undefined;
-          let ct: number | undefined;
-          if (typeof arg === "number") ct = arg;
-          else if (arg && typeof arg === "object") ct = arg.currentTime;
-          if (ct === undefined && typeof instance.getCurrentTime === "function") {
-            ct = instance.getCurrentTime();
+    apiPollId = window.setInterval(() => {
+      if (unlockedRef.current) return;
+      if (!apiAttached) {
+        const instance = getInstance();
+        if (instance) {
+          apiAttached = true;
+          if (typeof instance.on === "function") {
+            instance.on("timeupdate", (...args: unknown[]) => {
+              const arg = args[0] as { currentTime?: number } | number | undefined;
+              let ct: number | undefined;
+              if (typeof arg === "number") ct = arg;
+              else if (arg && typeof arg === "object") ct = arg.currentTime;
+              if (ct === undefined && typeof instance.getCurrentTime === "function") {
+                ct = instance.getCurrentTime();
+              }
+              if (ct !== undefined) checkAndMaybeUnlock(ct);
+            });
+            instance.on("ended", () => fireUnlock());
           }
-          if (ct !== undefined) checkAndMaybeUnlock(ct);
-        });
-        instance.on("ended", () => fireUnlock());
+        }
       }
-    };
-
-    const apiPollId = window.setInterval(() => {
-      apiTryAttach();
       if (apiAttached) {
         const instance = getInstance();
         if (instance && typeof instance.getCurrentTime === "function") {
-          const ct = instance.getCurrentTime();
-          checkAndMaybeUnlock(ct);
+          checkAndMaybeUnlock(instance.getCurrentTime());
         }
       }
     }, 1000);
 
-    // Strategy 3: any <video> tag in the page (light DOM fallback)
-    let attachedVideo: HTMLVideoElement | null = null;
     const onVideoTime = () => {
       if (attachedVideo) checkAndMaybeUnlock(attachedVideo.currentTime);
     };
     const onVideoEnded = () => fireUnlock();
 
-    const videoPollId = window.setInterval(() => {
-      if (attachedVideo) return;
-      const v = document.querySelector("video") as HTMLVideoElement | null;
+    videoPollId = window.setInterval(() => {
+      if (unlockedRef.current || attachedVideo) return;
+      const v = wrapper?.querySelector("video") as HTMLVideoElement | null;
       if (!v) return;
       attachedVideo = v;
-      console.log("[VSL] light-dom <video> attached");
       v.addEventListener("timeupdate", onVideoTime);
       v.addEventListener("ended", onVideoEnded);
     }, 500);
 
-    const debugId = window.setInterval(() => {
-      console.log(
-        "[VSL] tick — apiAttached=",
-        apiAttached,
-        "lastSeen=",
-        lastSeen.toFixed(1),
-        "videoFound=",
-        !!attachedVideo
-      );
-    }, 3000);
-
     return () => {
-      window.clearInterval(apiPollId);
-      window.clearInterval(videoPollId);
-      window.clearInterval(debugId);
+      cleanupTimers();
       if (wrapper) elEvents.forEach((e) => wrapper.removeEventListener(e, elHandler));
       if (attachedVideo) {
         attachedVideo.removeEventListener("timeupdate", onVideoTime);
