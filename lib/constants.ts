@@ -58,7 +58,7 @@ export const OFFER_UNLOCK_SECONDS = 30;
 export const HERO = {
   badge: "",
   headline: "Descubra como viajar mais gastando o mesmo ou menos. Aprenda agora a transformar os",
-  headlineAccent: "gastos que você já tem hoje",
+  headlineAccent: "gastos que você já tem hoje..",
   headlineSuffix: "em viagens.",
   intro:
     "Descubra como transformar os gastos do seu dia a dia em viagens usando o Método S.I.M., que já economizou mais de R$ 400.000 para nossos alunos.",
