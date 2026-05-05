@@ -19,19 +19,21 @@ interface VTurbPlayerProps {
   playerId: string;
   className?: string;
   style?: React.CSSProperties;
+  useIframe?: boolean;
 }
 
 export default function VTurbPlayer({
   playerId,
   className,
   style,
+  useIframe = false,
 }: VTurbPlayerProps) {
   useEffect(() => {
     const domId = `vturb-script-${playerId}`;
     if (document.getElementById(domId)) return;
     const s = document.createElement("script");
     s.id = domId;
-    s.src = `https://scripts.converteai.net/${ACCOUNT_ID}/players/${playerId}/v4/player.js`;
+    s.src = `https://scripts.converteai.net/${ACCOUNT_ID}/players/${playerId}/v4/player.js?mac=0`;
     s.async = true;
     document.head.appendChild(s);
   }, [playerId]);

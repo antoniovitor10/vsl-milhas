@@ -128,8 +128,27 @@ export default function VSLPlayer({
     const onVideoEnded = () => fireUnlock();
 
     videoPollId = window.setInterval(() => {
-      if (unlockedRef.current || attachedVideo) return;
-      const v = wrapper?.querySelector("video") as HTMLVideoElement | null;
+      if (unlockedRef.current) return;
+      
+      // VTurb v4 exposes currentTime directly on the smartplayer element, or via internal properties
+      const w = wrapper as any;
+      if (w) {
+        let ct: number | undefined;
+        if (typeof w.currentTime === "number") ct = w.currentTime;
+        else if (typeof w.videoTime === "number") ct = w.videoTime;
+        else if (w.player && typeof w.player.currentTime === "function") ct = w.player.currentTime();
+        else if (w.player && typeof w.player.currentTime === "number") ct = w.player.currentTime;
+        
+        if (typeof ct === "number") {
+          checkAndMaybeUnlock(ct);
+        }
+      }
+
+      if (attachedVideo) return;
+      let v = wrapper?.querySelector("video") as HTMLVideoElement | null;
+      if (!v && wrapper?.shadowRoot) {
+        v = wrapper.shadowRoot.querySelector("video") as HTMLVideoElement | null;
+      }
       if (!v) return;
       attachedVideo = v;
       v.addEventListener("timeupdate", onVideoTime);
