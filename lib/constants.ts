@@ -21,6 +21,8 @@ export const PRICING = {
   garantiaDias: 15,
 };
 
+export const CHECKOUT_URL = "https://pay.kiwify.com.br/2uSPmvn";
+
 export const WHATSAPP = {
   numero: "+5575999999999",
   mensagem: `Olá! Vim pela página do ${PRODUCT.name} e quero garantir minha vaga!`,

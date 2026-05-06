@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { Play } from "lucide-react";
-import { HERO, WHATSAPP, PRODUCT } from "@/lib/constants";
+import { HERO, WHATSAPP, PRODUCT, CHECKOUT_URL } from "@/lib/constants";
 
 export default function HeroV2() {
   const ref = useRef<HTMLDivElement>(null);
@@ -191,7 +191,7 @@ export default function HeroV2() {
           }}
         >
           <a
-            href={WHATSAPP.link}
+            href={CHECKOUT_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="v2-btn-green"

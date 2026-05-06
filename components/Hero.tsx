@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { HERO, WHATSAPP } from "@/lib/constants";
+import { HERO, CHECKOUT_URL } from "@/lib/constants";
 import { fadeUp, stagger } from "@/lib/animations";
 import { trackEvent } from "@/lib/analytics";
 import VSLPlayer from "./VSLPlayer";
@@ -105,7 +105,7 @@ export default function Hero({ onUnlock, isUnlocked, isOfferUnlocked }: HeroProp
             transition={{ duration: 0.6 }}
           >
             <a
-              href={WHATSAPP.link}
+              href={CHECKOUT_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-cta-green inline-flex items-center gap-3 px-8 py-5 rounded-full text-base sm:text-lg uppercase mt-2 shadow-[0_0_40px_rgba(37,211,102,0.4)] animate-pulse"

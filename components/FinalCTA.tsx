@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import { FINAL_CTA, WHATSAPP } from "@/lib/constants";
+import { FINAL_CTA, CHECKOUT_URL } from "@/lib/constants";
 import { fadeUp, stagger, viewportOnce } from "@/lib/animations";
 import { trackEvent } from "@/lib/analytics";
 
@@ -85,7 +85,7 @@ export default function FinalCTA() {
           {/* CTA */}
           <motion.div variants={fadeUp}>
             <a
-              href={WHATSAPP.link}
+              href={CHECKOUT_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-10 py-6 rounded-full text-base sm:text-xl font-extrabold uppercase tracking-wide transition-all duration-200 hover:scale-105 hover:shadow-2xl"

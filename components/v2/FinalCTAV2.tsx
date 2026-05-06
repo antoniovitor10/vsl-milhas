@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { FINAL_CTA, WHATSAPP } from "@/lib/constants";
+import { FINAL_CTA, CHECKOUT_URL } from "@/lib/constants";
 
 export default function FinalCTAV2() {
   const ref = useRef<HTMLElement>(null);
@@ -88,7 +88,7 @@ export default function FinalCTAV2() {
 
         <div className="v2-reveal" style={{ display: "flex", flexDirection: "column", gap: "0.85rem", alignItems: "flex-start" }}>
           <a
-            href={WHATSAPP.link}
+            href={CHECKOUT_URL}
             target="_blank"
             rel="noopener noreferrer"
             style={{
