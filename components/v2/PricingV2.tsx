@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { Check } from "lucide-react";
-import { OFFER, PRICING, WHATSAPP } from "@/lib/constants";
+import { PRICING, OFFER, WHATSAPP, CHECKOUT_URL } from "@/lib/constants";
 
 export default function PricingV2() {
   const ref = useRef<HTMLElement>(null);
@@ -94,7 +94,7 @@ export default function PricingV2() {
               </p>
               <div style={{ marginTop: "1.75rem" }}>
                 <a
-                  href={WHATSAPP.link}
+                  href={CHECKOUT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="v2-btn-green"

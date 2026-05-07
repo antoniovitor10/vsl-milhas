@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { PRODUCT, WHATSAPP } from "@/lib/constants";
+import { PRODUCT, CHECKOUT_URL } from "@/lib/constants";
 import { Menu, X } from "lucide-react";
 
 const STRIP_H = 34; // altura da tarja de urgência
@@ -111,7 +111,7 @@ export default function NavbarV2() {
 
             {/* CTA desktop */}
             <a
-              href={WHATSAPP.link}
+              href={CHECKOUT_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="v2-btn-black"
@@ -169,7 +169,7 @@ export default function NavbarV2() {
               </a>
             ))}
             <a
-              href={WHATSAPP.link}
+              href={CHECKOUT_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="v2-btn-black"
