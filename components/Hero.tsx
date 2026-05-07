@@ -108,6 +108,7 @@ export default function Hero({ onUnlock, isUnlocked, isOfferUnlocked }: HeroProp
               href={CHECKOUT_URL}
               target="_blank"
               rel="noopener noreferrer"
+              data-checkout-event="hero_cta_click"
               className="btn-cta-green inline-flex items-center gap-3 px-8 py-5 rounded-full text-base sm:text-lg uppercase mt-2 shadow-[0_0_40px_rgba(37,211,102,0.4)] animate-pulse"
               style={{ fontFamily: "var(--font-sora), sans-serif" }}
               onClick={() => trackEvent("hero_cta_click")}

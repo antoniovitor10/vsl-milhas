@@ -180,6 +180,7 @@ export default function PricingCard() {
                 href={CHECKOUT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-checkout-event="pricing_cta_click"
                 className="btn-cta-green w-full py-5 rounded-2xl text-center text-base sm:text-lg uppercase animate-pulse shadow-[0_0_40px_rgba(37,211,102,0.3)]"
                 style={{ fontFamily: "var(--font-sora), sans-serif" }}
                 onClick={() => trackEvent("pricing_cta_click")}

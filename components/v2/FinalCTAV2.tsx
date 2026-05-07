@@ -91,6 +91,7 @@ export default function FinalCTAV2() {
             href={CHECKOUT_URL}
             target="_blank"
             rel="noopener noreferrer"
+            data-checkout-event="final_cta_click"
             style={{
               display: "inline-flex",
               alignItems: "center",

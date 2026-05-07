@@ -114,6 +114,7 @@ export default function NavbarV2() {
               href={CHECKOUT_URL}
               target="_blank"
               rel="noopener noreferrer"
+              data-checkout-event="navbar_cta_click"
               className="v2-btn-black"
               style={{
                 fontSize: "0.68rem",
@@ -172,6 +173,7 @@ export default function NavbarV2() {
               href={CHECKOUT_URL}
               target="_blank"
               rel="noopener noreferrer"
+              data-checkout-event="navbar_mobile_cta_click"
               className="v2-btn-black"
               style={{ textAlign: "center", justifyContent: "center", fontSize: "0.68rem" }}
             >

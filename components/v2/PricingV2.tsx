@@ -97,6 +97,7 @@ export default function PricingV2() {
                   href={CHECKOUT_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-checkout-event="pricing_cta_click"
                   className="v2-btn-green"
                   style={{ width: "100%", justifyContent: "center" }}
                 >

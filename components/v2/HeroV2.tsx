@@ -194,6 +194,7 @@ export default function HeroV2() {
             href={CHECKOUT_URL}
             target="_blank"
             rel="noopener noreferrer"
+            data-checkout-event="hero_cta_click"
             className="v2-btn-green"
           >
             {HERO.cta} →

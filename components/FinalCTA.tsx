@@ -88,6 +88,7 @@ export default function FinalCTA() {
               href={CHECKOUT_URL}
               target="_blank"
               rel="noopener noreferrer"
+              data-checkout-event="final_cta_click"
               className="inline-flex items-center gap-3 px-10 py-6 rounded-full text-base sm:text-xl font-extrabold uppercase tracking-wide transition-all duration-200 hover:scale-105 hover:shadow-2xl"
               style={{
                 background: "white",
