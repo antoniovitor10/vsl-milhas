@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { HERO_VIDEO_AUTO_UNLOCK_SECONDS } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import VTurbPlayer from "./VTurbPlayer";
@@ -10,11 +10,20 @@ const HERO_VTURB_ID = "69f8c100d80c2e54d8dfaee5";
 interface VSLPlayerProps {
   onUnlock: () => void;
   autoUnlockDelaySeconds?: number;
+  isUnlocked?: boolean;
 }
 
 type VTurbInstance = {
   getCurrentTime?: () => number;
   on?: (event: string, cb: (...args: unknown[]) => void) => void;
+};
+
+type VTurbWrapperElement = HTMLElement & {
+  currentTime?: number;
+  videoTime?: number;
+  player?: {
+    currentTime?: number | (() => number);
+  };
 };
 
 declare global {
@@ -30,10 +39,17 @@ declare global {
 export default function VSLPlayer({
   onUnlock,
   autoUnlockDelaySeconds = HERO_VIDEO_AUTO_UNLOCK_SECONDS,
+  isUnlocked = false,
 }: VSLPlayerProps) {
-  const unlockedRef = useRef(false);
+  const unlockedRef = useRef(isUnlocked);
 
   useEffect(() => {
+    unlockedRef.current = isUnlocked;
+  }, [isUnlocked]);
+
+  useEffect(() => {
+    if (isUnlocked) return;
+
     const targetSeconds = autoUnlockDelaySeconds;
     const wrapperId = `vid-${HERO_VTURB_ID}`;
     const wrapper = document.getElementById(wrapperId);
@@ -131,12 +147,12 @@ export default function VSLPlayer({
       if (unlockedRef.current) return;
       
       // VTurb v4 exposes currentTime directly on the smartplayer element, or via internal properties
-      const w = wrapper as any;
+      const w = wrapper as VTurbWrapperElement | null;
       if (w) {
         let ct: number | undefined;
         if (typeof w.currentTime === "number") ct = w.currentTime;
         else if (typeof w.videoTime === "number") ct = w.videoTime;
-        else if (w.player && typeof w.player.currentTime === "function") ct = w.player.currentTime();
+        else if (typeof w.player?.currentTime === "function") ct = w.player.currentTime();
         else if (w.player && typeof w.player.currentTime === "number") ct = w.player.currentTime;
         
         if (typeof ct === "number") {
@@ -163,7 +179,7 @@ export default function VSLPlayer({
         attachedVideo.removeEventListener("ended", onVideoEnded);
       }
     };
-  }, [autoUnlockDelaySeconds, onUnlock]);
+  }, [autoUnlockDelaySeconds, isUnlocked, onUnlock]);
 
   return (
     <div className="w-full mt-8 relative z-10">

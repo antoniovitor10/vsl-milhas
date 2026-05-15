@@ -74,7 +74,7 @@ export default function Hero({ onUnlock, isUnlocked, isOfferUnlocked }: HeroProp
         </motion.h1>
 
         <motion.div variants={fadeUp} className="w-full relative z-20">
-          <VSLPlayer onUnlock={onUnlock} />
+          <VSLPlayer onUnlock={onUnlock} isUnlocked={isUnlocked} />
         </motion.div>
 
         {HERO.intro && (
